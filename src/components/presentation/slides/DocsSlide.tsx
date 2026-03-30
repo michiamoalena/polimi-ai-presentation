@@ -77,7 +77,7 @@ const DocsSlide = ({ content, onUpdate }: Props) => (
           className={`p-5 flex flex-col gap-3 border-2 ${tool.accent} transition-colors`}
         >
           <div className="flex items-center gap-3">
-            <img src={tool.logo} alt={tool.name} className="w-9 h-9 object-contain shrink-0" />
+            <img src={tool.logo} alt={tool.name} className="w-16 h-16 object-contain shrink-0" />
             <span className="text-xl font-bold text-foreground">{tool.name}</span>
           </div>
           <div className="flex flex-col gap-2">
