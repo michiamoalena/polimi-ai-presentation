@@ -13,7 +13,7 @@ interface SlideContainerProps {
 const SlideContainer = ({ children, currentSlide, totalSlides, onNext, onPrev }: SlideContainerProps) => {
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-background">
-      <AnimatedBackground />
+      {currentSlide !== 0 && <AnimatedBackground />}
 
       {/* Navigation — top right */}
       <div className="fixed top-6 right-8 z-50 flex items-center gap-3">
