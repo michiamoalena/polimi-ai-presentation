@@ -44,6 +44,12 @@ const GeminiSlide = ({ content, onUpdate }: Props) => (
         onChange={(v) => onUpdate("heading", v)}
         className="text-6xl font-extrabold text-foreground leading-tight"
       />
+      <EditableText
+        as="p"
+        value={content.sub || "Free for students. Built for deep research & multimodal workflows."}
+        onChange={(v) => onUpdate("sub", v)}
+        className="text-2xl text-muted-foreground mt-2 font-medium"
+      />
     </div>
 
     <div className="flex-1 grid grid-cols-2 gap-6 min-h-0">
