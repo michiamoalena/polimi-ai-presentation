@@ -1,16 +1,64 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useMemo } from "react";
+import SlideContainer from "@/components/presentation/SlideContainer";
+import { useSlideNavigation } from "@/hooks/useSlideNavigation";
+import { usePollData } from "@/hooks/usePollData";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+import TitleSlide from "@/components/presentation/slides/TitleSlide";
+import QRCodeSlide from "@/components/presentation/slides/QRCodeSlide";
+import LiveResultsSlide from "@/components/presentation/slides/LiveResultsSlide";
+import DirectorSlide from "@/components/presentation/slides/DirectorSlide";
+import VoiceBrainstormSlide from "@/components/presentation/slides/VoiceBrainstormSlide";
+import SoftwareStackSlide from "@/components/presentation/slides/SoftwareStackSlide";
+import GeminiSlide from "@/components/presentation/slides/GeminiSlide";
+import PromptingSlide from "@/components/presentation/slides/PromptingSlide";
+import EditingSlide from "@/components/presentation/slides/EditingSlide";
+import DocsSlide from "@/components/presentation/slides/DocsSlide";
+import TeaserSlide from "@/components/presentation/slides/TeaserSlide";
+import CoachPromptSlide from "@/components/presentation/slides/CoachPromptSlide";
+
+const TOTAL_SLIDES = 12;
+
+const Index = () => {
+  const { currentSlide, next, prev, totalSlides } = useSlideNavigation(TOTAL_SLIDES);
+  const pollData = usePollData();
+
+  // Editable content state per slide
+  const [slideContent, setSlideContent] = useState<Record<number, Record<string, string>>>({});
+
+  const updateContent = (slideIndex: number) => (key: string, value: string) => {
+    setSlideContent((prev) => ({
+      ...prev,
+      [slideIndex]: { ...prev[slideIndex], [key]: value },
+    }));
+  };
+
+  const c = (i: number) => slideContent[i] || {};
+
+  const pollUrl = useMemo(() => {
+    const base = window.location.origin;
+    return `${base}/poll`;
+  }, []);
+
+  const slides = [
+    <TitleSlide key={0} content={c(0)} onUpdate={updateContent(0)} />,
+    <QRCodeSlide key={1} content={c(1)} onUpdate={updateContent(1)} pollUrl={pollUrl} liveCount={pollData.total} />,
+    <LiveResultsSlide key={2} content={c(2)} onUpdate={updateContent(2)} roleCount={pollData.roleCount} statusCount={pollData.statusCount} aiCount={pollData.aiCount} toolCount={pollData.toolCount} />,
+    <DirectorSlide key={3} content={c(3)} onUpdate={updateContent(3)} />,
+    <VoiceBrainstormSlide key={4} content={c(4)} onUpdate={updateContent(4)} />,
+    <SoftwareStackSlide key={5} content={c(5)} onUpdate={updateContent(5)} />,
+    <GeminiSlide key={6} content={c(6)} onUpdate={updateContent(6)} />,
+    <PromptingSlide key={7} content={c(7)} onUpdate={updateContent(7)} />,
+    <EditingSlide key={8} content={c(8)} onUpdate={updateContent(8)} />,
+    <DocsSlide key={9} content={c(9)} onUpdate={updateContent(9)} />,
+    <TeaserSlide key={10} content={c(10)} onUpdate={updateContent(10)} />,
+    <CoachPromptSlide key={11} content={c(11)} onUpdate={updateContent(11)} />,
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <SlideContainer currentSlide={currentSlide} totalSlides={totalSlides} onNext={next} onPrev={prev}>
+      {slides[currentSlide]}
+    </SlideContainer>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
