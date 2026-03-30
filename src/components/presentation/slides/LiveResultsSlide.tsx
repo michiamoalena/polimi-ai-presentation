@@ -27,15 +27,14 @@ const BAR_GRADIENTS = [
 interface StatCardProps {
   label: string;
   items: { name: string; count: number; pct: number }[];
-  total: number;
 }
 
-const StatCard = ({ label, items, total }: StatCardProps) => (
+const StatCard = ({ label, items }: StatCardProps) => (
   <GlassPanel className="p-5 flex flex-col h-full">
     <h3 className="text-lg font-bold text-foreground mb-3">{label}</h3>
     <div className="flex-1 flex flex-col justify-center gap-2">
       {items.length === 0 && (
-        <p className="text-muted-foreground text-base italic">Waiting for responses…</p>
+        <p className="text-muted-foreground text-base italic">Waiting…</p>
       )}
       {items.map((item) => (
         <div key={item.name}>
@@ -53,10 +52,6 @@ const StatCard = ({ label, items, total }: StatCardProps) => (
           </div>
         </div>
       ))}
-    </div>
-    <div className="mt-3 pt-3 border-t border-border">
-      <span className="text-2xl font-extrabold text-foreground">{total}</span>
-      <span className="text-base text-muted-foreground ml-2">total</span>
     </div>
   </GlassPanel>
 );
@@ -81,42 +76,28 @@ const VerticalBars = ({ label, data }: VerticalBarsProps) => {
   return (
     <GlassPanel className="p-5 flex flex-col h-full">
       <h3 className="text-lg font-bold text-foreground mb-3">{label}</h3>
-      <div className="flex-1 flex items-end justify-center gap-3 min-h-0">
-        <AnimatePresence>
-          {bars.length === 0 && (
-            <p className="text-muted-foreground text-base italic pb-4">Waiting for responses…</p>
-          )}
-          {bars.map((b) => (
-            <motion.div
-              key={b.name}
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-col items-center gap-1 origin-bottom"
-              style={{ flex: "1 1 0", maxWidth: 80 }}
-            >
-              <span className="text-sm font-bold text-foreground tabular-nums">{b.count}</span>
-              <div className="w-full rounded-t-lg overflow-hidden bg-foreground/5" style={{ height: 140 }}>
-                <motion.div
-                  className={`w-full rounded-t-lg bg-gradient-to-t ${b.gradient}`}
-                  initial={{ height: 0 }}
-                  animate={{ height: `${Math.max(b.pct, 8)}%` }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                  style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
-                />
-                <div className="relative w-full h-full">
-                  <motion.div
-                    className={`absolute bottom-0 left-0 right-0 rounded-t-lg bg-gradient-to-t ${b.gradient}`}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${Math.max(b.pct, 8)}%` }}
-                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                  />
-                </div>
-              </div>
-              <span className="text-xs font-medium text-foreground text-center leading-tight truncate w-full">{b.name}</span>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+      <div className="flex-1 flex items-end justify-center gap-3 min-h-0 pb-1">
+        {bars.length === 0 && (
+          <p className="text-muted-foreground text-base italic pb-4">Waiting…</p>
+        )}
+        {bars.map((b) => (
+          <div
+            key={b.name}
+            className="flex flex-col items-center gap-1"
+            style={{ flex: "1 1 0", maxWidth: 72 }}
+          >
+            <span className="text-sm font-bold text-foreground tabular-nums">{b.count}</span>
+            <div className="w-full rounded-t-lg bg-foreground/5 relative" style={{ height: 120 }}>
+              <motion.div
+                className={`absolute bottom-0 left-0 right-0 rounded-t-lg bg-gradient-to-t ${b.gradient}`}
+                initial={{ height: 0 }}
+                animate={{ height: `${Math.max(b.pct, 10)}%` }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+              />
+            </div>
+            <span className="text-[11px] font-medium text-foreground text-center leading-tight w-full truncate">{b.name}</span>
+          </div>
+        ))}
       </div>
     </GlassPanel>
   );
@@ -127,6 +108,17 @@ interface WordCloudProps {
   data: Record<string, number>;
 }
 
+const WORD_COLORS = [
+  "text-orange-500",
+  "text-pink-500",
+  "text-violet-500",
+  "text-cyan-500",
+  "text-emerald-500",
+  "text-amber-500",
+  "text-rose-500",
+  "text-indigo-500",
+];
+
 const WordCloud = ({ label, data }: WordCloudProps) => {
   const words = useMemo(() => {
     const entries = Object.entries(data).sort((a, b) => b[1] - a[1]);
@@ -134,28 +126,17 @@ const WordCloud = ({ label, data }: WordCloudProps) => {
     return entries.map(([text, count]) => ({
       text,
       count,
-      scale: 0.6 + (count / maxCount) * 1.4, // font scale from 0.6x to 2x
+      scale: 0.5 + (count / maxCount) * 1.5,
     }));
   }, [data]);
-
-  const WORD_COLORS = [
-    "text-orange-500",
-    "text-pink-500",
-    "text-violet-500",
-    "text-cyan-500",
-    "text-emerald-500",
-    "text-amber-500",
-    "text-rose-500",
-    "text-indigo-500",
-  ];
 
   return (
     <GlassPanel className="p-5 flex flex-col h-full">
       <h3 className="text-lg font-bold text-foreground mb-3">{label}</h3>
-      <div className="flex-1 flex flex-wrap gap-3 items-center content-center justify-center overflow-hidden">
+      <div className="flex-1 flex flex-wrap gap-x-5 gap-y-3 items-center content-center justify-center overflow-hidden">
         <AnimatePresence>
           {words.length === 0 && (
-            <p className="text-muted-foreground text-base italic">Waiting for responses…</p>
+            <p className="text-muted-foreground text-base italic">Waiting…</p>
           )}
           {words.map((w, i) => (
             <motion.span
@@ -165,10 +146,10 @@ const WordCloud = ({ label, data }: WordCloudProps) => {
               exit={{ opacity: 0, scale: 0.5 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className={`font-bold ${WORD_COLORS[i % WORD_COLORS.length]} whitespace-nowrap`}
-              style={{ fontSize: `${Math.round(w.scale * 22)}px` }}
+              style={{ fontSize: `${Math.round(w.scale * 24)}px` }}
             >
               {w.text}
-              <span className="text-foreground/40 ml-1" style={{ fontSize: "0.6em" }}>{w.count}</span>
+              <span className="text-foreground/40 ml-1" style={{ fontSize: "0.55em" }}>{w.count}</span>
             </motion.span>
           ))}
         </AnimatePresence>
@@ -209,15 +190,19 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
         />
       </div>
 
-      <div className="flex-1 grid grid-cols-3 grid-rows-2 gap-4 min-h-0">
-        {/* Row 1: Horizontal bar metrics */}
-        <StatCard label="Specialization" items={toItems(roleCount)} total={total} />
-        <StatCard label="Status" items={toItems(statusCount)} total={total} />
-        <StatCard label="Uses AI?" items={aiItems} total={total} />
+      {/* Row 1: compact stat cards — 40% height */}
+      <div className="grid grid-cols-3 gap-4" style={{ height: "35%" }}>
+        <StatCard label="Specialization" items={toItems(roleCount)} />
+        <StatCard label="Status" items={toItems(statusCount)} />
+        <StatCard label="Uses AI?" items={aiItems} />
+      </div>
 
-        {/* Row 2: Vertical bars for tools, Word cloud for reasons */}
-        <VerticalBars label="AI Tools" data={toolCount} />
+      {/* Row 2: tools + word cloud — remaining height */}
+      <div className="flex-1 grid grid-cols-5 gap-4 mt-4 min-h-0">
         <div className="col-span-2 min-h-0">
+          <VerticalBars label="AI Tools" data={toolCount} />
+        </div>
+        <div className="col-span-3 min-h-0">
           <WordCloud label="Why not AI?" data={noReasonCount} />
         </div>
       </div>
