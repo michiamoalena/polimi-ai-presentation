@@ -15,24 +15,19 @@ const bullets = [
 
 const EditingSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col">
-    <div className="mb-6 flex items-center gap-5">
-      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
-        <Paintbrush className="w-7 h-7 text-white" />
-      </div>
-      <div>
-        <EditableText
-          as="h1"
-          value={content.heading || "Fix, Don't Regenerate"}
-          onChange={(v) => onUpdate("heading", v)}
-          className="text-6xl font-extrabold text-foreground leading-tight"
-        />
-        <EditableText
-          as="p"
-          value={content.sub || "In-painting"}
-          onChange={(v) => onUpdate("sub", v)}
-          className="text-2xl text-muted-foreground mt-1 font-medium"
-        />
-      </div>
+    <div className="mb-6">
+      <EditableText
+        as="h1"
+        value={content.heading || "Fix, Don't Regenerate"}
+        onChange={(v) => onUpdate("heading", v)}
+        className="text-6xl font-extrabold text-foreground leading-tight"
+      />
+      <EditableText
+        as="p"
+        value={content.sub || "In-painting"}
+        onChange={(v) => onUpdate("sub", v)}
+        className="text-2xl text-muted-foreground mt-2 font-medium"
+      />
     </div>
     <GlassPanel className="flex-1 p-10">
       <div className="space-y-6 h-full flex flex-col justify-center">

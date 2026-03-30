@@ -10,24 +10,19 @@ interface Props {
 // пометка: надо сгенерить картинки "Bad" vs "Good" (AI soup vs Clean 2-point perspective)
 const PromptingSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col">
-    <div className="mb-6 flex items-center gap-5">
-      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center">
-        <Code className="w-7 h-7 text-white" />
-      </div>
-      <div>
-        <EditableText
-          as="h1"
-          value={content.heading || "Architectural Precision"}
-          onChange={(v) => onUpdate("heading", v)}
-          className="text-6xl font-extrabold text-foreground leading-tight"
-        />
-        <EditableText
-          as="p"
-          value={content.sub || "The Cheat Code"}
-          onChange={(v) => onUpdate("sub", v)}
-          className="text-2xl text-muted-foreground mt-1 font-medium"
-        />
-      </div>
+    <div className="mb-6">
+      <EditableText
+        as="h1"
+        value={content.heading || "Architectural Precision"}
+        onChange={(v) => onUpdate("heading", v)}
+        className="text-6xl font-extrabold text-foreground leading-tight"
+      />
+      <EditableText
+        as="p"
+        value={content.sub || "The Cheat Code"}
+        onChange={(v) => onUpdate("sub", v)}
+        className="text-2xl text-muted-foreground mt-2 font-medium"
+      />
     </div>
 
     {/* TODO: сгенерить Bad vs Good comparison images */}
