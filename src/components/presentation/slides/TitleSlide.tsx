@@ -12,7 +12,7 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
     <div
       className="fixed inset-0 pointer-events-none z-20"
       style={{
-        background: 'radial-gradient(ellipse 65% 65% at 95% 95%, rgba(236,72,153,0.55) 0%, rgba(168,85,247,0.30) 15%, rgba(251,146,60,0.10) 30%, transparent 50%)',
+        background: 'radial-gradient(ellipse 390% 390% at 95% 95%, rgba(236,72,153,0.55) 0%, rgba(168,85,247,0.30) 15%, rgba(251,146,60,0.10) 30%, transparent 50%)',
       }}
     />
 
