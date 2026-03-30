@@ -38,8 +38,6 @@ const features = [
 const GeminiSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col">
     <div className="mb-6">
-      {/* TODO: добавить логотип Gemini */}
-      <p className="text-amber-500 text-sm font-semibold mb-2">📌 Пометка: добавить логотип Gemini</p>
       <EditableText
         as="h1"
         value={content.heading || "Gemini — Your Professional Hub"}
