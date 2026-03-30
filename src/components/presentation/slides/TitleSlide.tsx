@@ -56,7 +56,7 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
             onChange={(v) => onUpdate("course", v)}
             className="text-lg font-semibold text-foreground"
           />
-          <img src={polimiLogo} alt="Politecnico di Milano" className="h-[3.2rem] w-auto translate-y-[8px]" />
+          <img src={polimiLogo} alt="Politecnico di Milano" className="h-[4rem] w-auto translate-y-[10px]" />
         </div>
       </div>
     </div>
