@@ -34,7 +34,7 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
     </div>
 
     {/* Footer — single line with all info */}
-    <div className="absolute bottom-8 left-10 right-10">
+    <div className="absolute bottom-8 left-10 right-10 z-30">
       <div className="flex w-full items-end justify-between">
         <div className="flex items-baseline gap-3 leading-none">
           <EditableText
