@@ -4,7 +4,7 @@ import logoGemini from "@/assets/logo-gemini.png";
 import logoChatGPT from "@/assets/logo-chatgpt.png";
 import logoMidjourney from "@/assets/logo-midjourney.png";
 import logoKling from "@/assets/logo-kling.png";
-import logoLookX from "@/assets/logo-lookx.png";
+
 
 interface Props {
   content: Record<string, string>;
