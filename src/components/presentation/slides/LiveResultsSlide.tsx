@@ -190,20 +190,23 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
         />
       </div>
 
-      {/* Row 1: stat cards + tools */}
-      <div className="grid grid-cols-3 gap-4 items-start">
-        <StatCard label="Specialization" items={toItems(roleCount)} />
-        <StatCard label="Status" items={toItems(statusCount)} />
-        <StatCard label="Uses AI?" items={aiItems} />
-      </div>
-
-      {/* Row 2: tools under specialization + word cloud takes more space */}
-      <div className="flex-1 grid grid-cols-3 gap-4 mt-4 min-h-0">
-        <div className="min-h-0">
-          <VerticalBars label="AI Tools" data={toolCount} />
+      <div className="flex-1 grid grid-cols-3 gap-4 min-h-0">
+        {/* Left column */}
+        <div className="flex flex-col gap-4 min-h-0">
+          <StatCard label="Specialization" items={toItems(roleCount)} />
+          <div className="flex-1 min-h-0">
+            <VerticalBars label="AI Tools" data={toolCount} />
+          </div>
         </div>
-        <div className="col-span-2 min-h-0">
-          <WordCloud label="Why not AI?" data={noReasonCount} />
+        {/* Right two columns */}
+        <div className="col-span-2 flex flex-col gap-4 min-h-0">
+          <div className="grid grid-cols-2 gap-4">
+            <StatCard label="Status" items={toItems(statusCount)} />
+            <StatCard label="Uses AI?" items={aiItems} />
+          </div>
+          <div className="flex-1 min-h-0">
+            <WordCloud label="Why not AI?" data={noReasonCount} />
+          </div>
         </div>
       </div>
     </div>
