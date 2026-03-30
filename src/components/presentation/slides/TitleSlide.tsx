@@ -18,13 +18,10 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
 
     {/* Title — vertically centered, above gradient */}
     <div className="flex-1 flex flex-col justify-center max-w-5xl pb-20 relative z-30">
-      <EditableText
-        as="h1"
-        value={content.title || "Meta & Techno Skills of working with Gen AI"}
-        onChange={(v) => onUpdate("title", v)}
-        className="text-7xl font-extrabold text-foreground mb-6 leading-[1.1]"
-        multiline
-      />
+      <h1 className="text-7xl font-extrabold text-foreground mb-6 leading-[1.1]">
+        <span className="block">Meta & Technical Skills</span>
+        <span className="block">of working with Gen AI</span>
+      </h1>
       <EditableText
         as="p"
         value={content.subtitle || "For Architects and Urbanists"}
@@ -35,31 +32,31 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
 
     {/* Footer — single line with all info */}
     <div className="absolute bottom-8 left-10 right-10 z-30">
-      <div className="flex w-full items-end justify-between">
-        <div className="flex items-baseline gap-3 leading-none">
+      <div className="flex w-full items-baseline justify-between">
+        <div className="flex items-baseline gap-3">
           <EditableText
             as="p"
             value={content.author || "Alena Pavlova"}
             onChange={(v) => onUpdate("author", v)}
-            className="text-lg font-bold text-foreground leading-none"
+            className="text-lg font-bold text-foreground"
           />
-          <span className="text-muted-foreground/30 text-lg leading-none">·</span>
+          <span className="text-muted-foreground/30 text-lg">·</span>
           <EditableText
             as="p"
             value={content.authorSub || "AI Enthusiast & PoliMi AUIC Student"}
             onChange={(v) => onUpdate("authorSub", v)}
-            className="text-lg text-muted-foreground font-medium leading-none"
+            className="text-lg text-muted-foreground font-medium"
           />
         </div>
 
-        <div className="flex items-end gap-4 leading-none">
+        <div className="flex items-baseline gap-4">
           <EditableText
             as="p"
             value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto / 2026"}
             onChange={(v) => onUpdate("course", v)}
-            className="text-lg font-semibold text-foreground leading-none mb-[2px]"
+            className="text-lg font-semibold text-foreground"
           />
-          <img src={polimiLogo} alt="Politecnico di Milano" className="h-20 w-auto -mb-[2px]" />
+          <img src={polimiLogo} alt="Politecnico di Milano" className="h-14 w-auto translate-y-[5px]" />
         </div>
       </div>
     </div>
