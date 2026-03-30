@@ -28,6 +28,7 @@ const tools = [
     name: "ChatGPT",
     logo: logoChatGPT,
     accent: "border-pink-400/40 hover:border-pink-400",
+    linkGradient: "from-pink-500 to-rose-500",
     links: [
       { label: "Creating Images in ChatGPT", url: "https://help.openai.com/en/articles/8932459-creating-images-in-chatgpt" },
       { label: "Editing Images with ChatGPT", url: "https://help.openai.com/en/articles/9055440-editing-your-images-with-dall-e" },
