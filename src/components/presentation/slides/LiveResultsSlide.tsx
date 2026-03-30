@@ -30,7 +30,7 @@ interface StatCardProps {
 }
 
 const StatCard = ({ label, items }: StatCardProps) => (
-  <GlassPanel className="p-5 flex flex-col h-full">
+  <GlassPanel className="p-5 flex flex-col">
     <h3 className="text-lg font-bold text-foreground mb-3">{label}</h3>
     <div className="flex flex-col justify-start gap-2">
       {items.length === 0 && (
