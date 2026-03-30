@@ -1,5 +1,10 @@
 import EditableText from "../EditableText";
 import GlassPanel from "../GlassPanel";
+import logoGemini from "@/assets/logo-gemini.png";
+import logoChatGPT from "@/assets/logo-chatgpt.png";
+import logoMidjourney from "@/assets/logo-midjourney.png";
+import logoKling from "@/assets/logo-kling.png";
+import logoLookX from "@/assets/logo-lookx.png";
 
 interface Props {
   content: Record<string, string>;
@@ -7,13 +12,12 @@ interface Props {
 }
 
 const rows = [
-  { task: "Brainstorm & Analyze", tool: "Gemini", why: "FREE for students. Best for long PDFs/Books." },
-  { task: "Quick Fixes & Edits", tool: "ChatGPT (Canvas)", why: 'Best "Brush" tool. Fix details by talking to the image.' },
-  { task: "Aesthetic Mastery", tool: "Midjourney", why: "Best lighting/textures. Use --sref for style." },
-  { task: "Camera & POV", tool: "Kling AI / LookX", why: "Set exact angles (Top-down, Pan, Tilt, Zoom)." },
+  { task: "Brainstorm & Analyze", tool: "Gemini", why: "FREE for students. Best for long PDFs/Books.", logo: logoGemini },
+  { task: "Quick Fixes & Edits", tool: "ChatGPT (Canvas)", why: 'Best "Brush" tool. Fix details by talking to the image.', logo: logoChatGPT },
+  { task: "Aesthetic Mastery", tool: "Midjourney", why: "Best lighting/textures. Use --sref for style.", logo: logoMidjourney },
+  { task: "Camera & POV", tool: "Kling AI / LookX", why: "Set exact angles (Top-down, Pan, Tilt, Zoom).", logos: [logoKling, logoLookX] },
 ];
 
-// пометка: добавить официальные иконки/логотипы для каждого инструмента
 const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col">
     <div className="mb-6">
@@ -31,8 +35,6 @@ const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
       />
     </div>
     <GlassPanel className="flex-1 p-8">
-      {/* TODO: добавить иконки логотипы для каждого тула */}
-      <p className="text-amber-500 text-sm font-semibold mb-4">📌 Пометка: добавить официальные иконки/логотипы для каждого инструмента</p>
       <div className="rounded-xl overflow-hidden border border-border h-full flex flex-col">
         <div className="grid grid-cols-3 bg-gradient-to-r from-violet-500/10 to-pink-500/10 font-bold text-foreground">
           <div className="p-5 text-xl">Task</div>
@@ -48,7 +50,16 @@ const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
                 className="text-xl text-foreground font-medium"
               />
             </div>
-            <div className="p-5 flex items-center">
+            <div className="p-5 flex items-center gap-3">
+              {"logo" in row && row.logo ? (
+                <img src={row.logo} alt="" className="w-8 h-8 object-contain shrink-0" />
+              ) : "logos" in row && row.logos ? (
+                <div className="flex gap-1.5 shrink-0">
+                  {row.logos.map((l, j) => (
+                    <img key={j} src={l} alt="" className="w-8 h-8 object-contain" />
+                  ))}
+                </div>
+              ) : null}
               <EditableText
                 value={content[`tool${i}`] || row.tool}
                 onChange={(v) => onUpdate(`tool${i}`, v)}
