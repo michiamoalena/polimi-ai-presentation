@@ -151,7 +151,7 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
         <StatCard label="Uses AI?" items={aiItems} total={total} />
 
         {/* Row 2: Bubble clouds */}
-        <div className="col-span-2">
+        <div className="col-span-2 min-h-0">
           <BubbleCloud label="AI Tools" data={toolCount} />
         </div>
         <BubbleCloud label="Why not AI?" data={noReasonCount} />
