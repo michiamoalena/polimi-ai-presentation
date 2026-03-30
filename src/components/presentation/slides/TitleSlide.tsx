@@ -43,14 +43,8 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
         <div className="text-right">
           <EditableText
             as="p"
-            value={content.course1 || "Strumenti di Rappresentazione"}
-            onChange={(v) => onUpdate("course1", v)}
-            className="text-lg text-muted-foreground uppercase tracking-wide font-medium"
-          />
-          <EditableText
-            as="p"
-            value={content.course2 || "Innovativa del Progetto — 2026"}
-            onChange={(v) => onUpdate("course2", v)}
+            value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto — 2026"}
+            onChange={(v) => onUpdate("course", v)}
             className="text-lg text-muted-foreground uppercase tracking-wide font-medium"
           />
         </div>
