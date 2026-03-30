@@ -38,7 +38,7 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
             as="p"
             value={content.author || "Alena Pavlova"}
             onChange={(v) => onUpdate("author", v)}
-            className="text-lg font-bold text-foreground"
+            className="text-lg font-semibold text-foreground"
           />
           <span className="text-muted-foreground/30 text-lg">·</span>
           <EditableText
@@ -56,7 +56,7 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
             onChange={(v) => onUpdate("course", v)}
             className="text-lg font-semibold text-foreground"
           />
-          <img src={polimiLogo} alt="Politecnico di Milano" className="h-14 w-auto translate-y-[5px]" />
+          <img src={polimiLogo} alt="Politecnico di Milano" className="h-10 w-auto translate-y-[3px]" />
         </div>
       </div>
     </div>
