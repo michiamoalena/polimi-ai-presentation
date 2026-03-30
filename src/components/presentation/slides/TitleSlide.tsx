@@ -26,31 +26,28 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
     </div>
 
     {/* Footer — single line with all info */}
-    <div className="absolute bottom-8 left-10 right-10 flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <EditableText
-          as="p"
-          value={content.author || "Alena Pavlova"}
-          onChange={(v) => onUpdate("author", v)}
-          className="text-base font-bold text-foreground"
-        />
-        <span className="text-muted-foreground/40 text-base">·</span>
-        <EditableText
-          as="p"
-          value={content.authorSub || "AI Enthusiast & PoliMi AUIC Student"}
-          onChange={(v) => onUpdate("authorSub", v)}
-          className="text-base text-muted-foreground font-medium"
-        />
-      </div>
-      <div className="flex items-center gap-4">
-        <EditableText
-          as="p"
-          value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto / 2026"}
-          onChange={(v) => onUpdate("course", v)}
-          className="text-base font-semibold text-foreground"
-        />
-        <img src={polimiLogo} alt="Politecnico di Milano" className="h-10 w-auto" />
-      </div>
+    <div className="absolute bottom-8 left-10 right-10 flex items-center gap-3">
+      <EditableText
+        as="p"
+        value={content.author || "Alena Pavlova"}
+        onChange={(v) => onUpdate("author", v)}
+        className="text-lg font-bold text-foreground"
+      />
+      <span className="text-muted-foreground/30 text-lg">·</span>
+      <EditableText
+        as="p"
+        value={content.authorSub || "AI Enthusiast & PoliMi AUIC Student"}
+        onChange={(v) => onUpdate("authorSub", v)}
+        className="text-lg text-muted-foreground font-medium"
+      />
+      <span className="text-muted-foreground/30 text-lg">·</span>
+      <EditableText
+        as="p"
+        value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto / 2026"}
+        onChange={(v) => onUpdate("course", v)}
+        className="text-lg font-semibold text-foreground"
+      />
+      <img src={polimiLogo} alt="Politecnico di Milano" className="h-7 w-auto ml-1" />
     </div>
   </div>
 );
