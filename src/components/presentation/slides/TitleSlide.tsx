@@ -26,8 +26,8 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
     </div>
 
     {/* Footer — single line with all info */}
-    <div className="absolute bottom-8 left-10 right-10 flex items-end justify-between">
-      <div className="flex items-center gap-3">
+    <div className="absolute bottom-8 left-10 right-10 flex items-bottom justify-between" style={{ alignItems: 'last baseline' }}>
+      <div className="flex items-baseline gap-3">
         <EditableText
           as="p"
           value={content.author || "Alena Pavlova"}
@@ -42,14 +42,14 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
           className="text-lg text-muted-foreground font-medium"
         />
       </div>
-      <div className="flex items-end gap-4">
+      <div className="flex items-end gap-3">
         <EditableText
           as="p"
           value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto / 2026"}
           onChange={(v) => onUpdate("course", v)}
-          className="text-lg font-semibold text-foreground mb-[3px]"
+          className="text-lg font-semibold text-foreground mb-[5px]"
         />
-        <img src={polimiLogo} alt="Politecnico di Milano" className="h-12 w-auto" />
+        <img src={polimiLogo} alt="Politecnico di Milano" className="h-16 w-auto" />
       </div>
     </div>
   </div>
