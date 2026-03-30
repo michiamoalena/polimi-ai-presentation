@@ -14,7 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      poll_responses: {
+        Row: {
+          ai_no_reason: string | null
+          ai_tools: string[] | null
+          created_at: string
+          id: string
+          role: string
+          status: string
+          uses_ai: boolean
+        }
+        Insert: {
+          ai_no_reason?: string | null
+          ai_tools?: string[] | null
+          created_at?: string
+          id?: string
+          role: string
+          status: string
+          uses_ai: boolean
+        }
+        Update: {
+          ai_no_reason?: string | null
+          ai_tools?: string[] | null
+          created_at?: string
+          id?: string
+          role?: string
+          status?: string
+          uses_ai?: boolean
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
