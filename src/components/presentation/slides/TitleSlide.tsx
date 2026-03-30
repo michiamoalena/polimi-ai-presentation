@@ -1,4 +1,5 @@
 import EditableText from "../EditableText";
+import polimiLogo from "@/assets/polimi-logo.png";
 
 interface Props {
   content: Record<string, string>;
@@ -6,7 +7,7 @@ interface Props {
 }
 
 const TitleSlide = ({ content, onUpdate }: Props) => (
-  <div className="w-full h-full flex flex-col justify-center px-4">
+  <div className="w-full h-full flex flex-col justify-center px-4 relative">
     <div className="max-w-4xl">
       <EditableText
         as="h1"
@@ -39,19 +40,22 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
           className="text-sm text-muted-foreground"
         />
       </div>
-      <div className="text-right">
-        <EditableText
-          as="p"
-          value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto"}
-          onChange={(v) => onUpdate("course", v)}
-          className="text-sm text-muted-foreground uppercase tracking-wide"
-        />
-        <EditableText
-          as="p"
-          value={content.year || "PoliMi — 2026"}
-          onChange={(v) => onUpdate("year", v)}
-          className="text-sm text-muted-foreground mt-1"
-        />
+      <div className="flex items-end gap-5">
+        <div className="text-right">
+          <EditableText
+            as="p"
+            value={content.course1 || "Strumenti di Rappresentazione"}
+            onChange={(v) => onUpdate("course1", v)}
+            className="text-sm text-muted-foreground uppercase tracking-wide"
+          />
+          <EditableText
+            as="p"
+            value={content.course2 || "Innovativa del Progetto — 2026"}
+            onChange={(v) => onUpdate("course2", v)}
+            className="text-sm text-muted-foreground uppercase tracking-wide"
+          />
+        </div>
+        <img src={polimiLogo} alt="Politecnico di Milano" className="h-14 w-auto opacity-70" />
       </div>
     </div>
   </div>
