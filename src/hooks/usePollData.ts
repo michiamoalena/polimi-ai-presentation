@@ -14,12 +14,10 @@ export function usePollData() {
   const [responses, setResponses] = useState<PollResponse[]>([]);
 
   useEffect(() => {
-    // Fetch existing
     supabase.from("poll_responses").select("*").then(({ data }) => {
       if (data) setResponses(data);
     });
 
-    // Subscribe to realtime inserts
     const channel = supabase
       .channel("poll_realtime")
       .on(
@@ -54,5 +52,12 @@ export function usePollData() {
     return acc;
   }, {} as Record<string, number>);
 
-  return { responses, roleCount, statusCount, aiCount, toolCount, total: responses.length };
+  const noReasonCount = responses.reduce((acc, r) => {
+    if (r.ai_no_reason) {
+      acc[r.ai_no_reason] = (acc[r.ai_no_reason] || 0) + 1;
+    }
+    return acc;
+  }, {} as Record<string, number>);
+
+  return { responses, roleCount, statusCount, aiCount, toolCount, noReasonCount, total: responses.length };
 }
