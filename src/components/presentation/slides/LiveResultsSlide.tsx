@@ -191,7 +191,7 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
       </div>
 
       {/* Row 1: stat cards + tools */}
-      <div className="grid grid-cols-3 gap-4" style={{ height: "35%" }}>
+      <div className="grid grid-cols-3 gap-4">
         <StatCard label="Specialization" items={toItems(roleCount)} />
         <StatCard label="Status" items={toItems(statusCount)} />
         <StatCard label="Uses AI?" items={aiItems} />
