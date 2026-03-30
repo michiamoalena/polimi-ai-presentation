@@ -8,15 +8,11 @@ interface Props {
 
 const TitleSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col px-4 relative overflow-hidden">
-    {/* Single gradient orb anchored at bottom-right edge, fading toward top-left */}
+    {/* Full-slide radial gradient from bottom-right corner */}
     <div
-      className="absolute pointer-events-none rounded-full"
+      className="absolute inset-0 pointer-events-none"
       style={{
-        width: '1400px',
-        height: '1400px',
-        bottom: '-400px',
-        right: '-400px',
-        background: 'radial-gradient(circle at center, rgba(236,72,153,0.55) 0%, rgba(168,85,247,0.35) 30%, rgba(251,146,60,0.15) 55%, transparent 75%)',
+        background: 'radial-gradient(ellipse 120% 120% at 100% 100%, rgba(236,72,153,0.5) 0%, rgba(168,85,247,0.3) 25%, rgba(251,146,60,0.12) 45%, transparent 65%)',
       }}
     />
 
