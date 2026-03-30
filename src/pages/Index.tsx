@@ -42,7 +42,7 @@ const Index = () => {
   const slides = [
     <TitleSlide key={0} content={c(0)} onUpdate={updateContent(0)} />,
     <QRCodeSlide key={1} content={c(1)} onUpdate={updateContent(1)} pollUrl={pollUrl} liveCount={pollData.total} />,
-    <LiveResultsSlide key={2} content={c(2)} onUpdate={updateContent(2)} roleCount={pollData.roleCount} statusCount={pollData.statusCount} aiCount={pollData.aiCount} toolCount={pollData.toolCount} />,
+    <LiveResultsSlide key={2} content={c(2)} onUpdate={updateContent(2)} roleCount={pollData.roleCount} statusCount={pollData.statusCount} aiCount={pollData.aiCount} toolCount={pollData.toolCount} noReasonCount={pollData.noReasonCount} />,
     <DirectorSlide key={3} content={c(3)} onUpdate={updateContent(3)} />,
     <VoiceBrainstormSlide key={4} content={c(4)} onUpdate={updateContent(4)} />,
     <SoftwareStackSlide key={5} content={c(5)} onUpdate={updateContent(5)} />,
