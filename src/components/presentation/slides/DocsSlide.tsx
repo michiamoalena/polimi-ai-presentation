@@ -50,6 +50,7 @@ const tools = [
     name: "Kling AI",
     logo: logoKling,
     accent: "border-fuchsia-400/40 hover:border-fuchsia-400",
+    linkGradient: "from-fuchsia-500 to-violet-500",
     links: [
       { label: "Camera Control Guide", url: "https://app.klingai.com/global/quickstart/ai-camera-control-guide" },
       { label: "Video 3.0 Director Guide", url: "https://app.klingai.com/global/blog/kling-video-3-0-ai-director-features-guide" },
