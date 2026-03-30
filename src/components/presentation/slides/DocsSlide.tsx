@@ -17,6 +17,7 @@ const tools = [
     name: "Gemini",
     logo: logoGemini,
     accent: "border-violet-400/40 hover:border-violet-400",
+    linkGradient: "from-violet-500 to-purple-600",
     links: [
       { label: "Image Generation Prompting Tips", url: "https://blog.google/products/gemini/image-generation-prompting-tips/" },
       { label: "Nano Banana Pro: Advanced Tips", url: "https://blog.google/products/gemini/prompting-tips-nano-banana-pro/" },
