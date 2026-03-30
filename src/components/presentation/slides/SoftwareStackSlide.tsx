@@ -36,7 +36,7 @@ const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
     </div>
     <GlassPanel className="flex-1 p-8">
       <div className="rounded-xl overflow-hidden border border-border h-full flex flex-col">
-        <div className="grid grid-cols-3 bg-gradient-to-r from-violet-500/10 to-pink-500/10 font-bold text-foreground">
+        <div className="grid grid-cols-3 bg-gradient-to-r from-violet-500/25 to-pink-500/25 font-bold text-foreground">
           <div className="p-5 text-xl">Task</div>
           <div className="p-5 text-xl">Tool</div>
           <div className="p-5 text-xl">Why?</div>
