@@ -8,9 +8,17 @@ interface Props {
 
 const TitleSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col px-4 relative overflow-hidden">
-    {/* Gradient orb — right-center-bottom, fading to cream top-left */}
-    <div className="absolute bottom-[-20%] right-[10%] w-[900px] h-[900px] rounded-full bg-gradient-to-tl from-fuchsia-500/55 via-pink-500/45 to-orange-400/30 blur-[150px] pointer-events-none" />
-    <div className="absolute bottom-[5%] right-[30%] w-[500px] h-[500px] rounded-full bg-gradient-to-tl from-violet-500/30 to-pink-400/20 blur-[120px] pointer-events-none" />
+    {/* Single gradient orb anchored at bottom-right edge, fading toward top-left */}
+    <div
+      className="absolute pointer-events-none rounded-full"
+      style={{
+        width: '1400px',
+        height: '1400px',
+        bottom: '-400px',
+        right: '-400px',
+        background: 'radial-gradient(circle at center, rgba(236,72,153,0.55) 0%, rgba(168,85,247,0.35) 30%, rgba(251,146,60,0.15) 55%, transparent 75%)',
+      }}
+    />
 
     {/* Title — vertically centered, above gradient */}
     <div className="flex-1 flex flex-col justify-center max-w-5xl pb-20 relative z-10">
