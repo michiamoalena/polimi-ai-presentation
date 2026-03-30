@@ -13,7 +13,7 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
         as="h1"
         value={content.title || "Meta & Techno Skills of Working with Gen AI"}
         onChange={(v) => onUpdate("title", v)}
-        className="text-5xl font-bold text-foreground mb-6 leading-tight"
+        className="text-5xl font-extrabold text-foreground mb-6 leading-tight"
       />
       <EditableText
         as="h2"

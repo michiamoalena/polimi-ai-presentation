@@ -15,37 +15,37 @@ const links = [
 ];
 
 const DocsSlide = ({ content, onUpdate }: Props) => (
-  <div className="w-full h-full flex items-center justify-center">
-    <GlassPanel className="max-w-4xl w-full p-12">
+  <div className="w-full h-full flex flex-col">
+    <div className="mb-6">
       <EditableText
-        as="h2"
+        as="h1"
         value={content.heading || "Official Docs & Tutorials"}
         onChange={(v) => onUpdate("heading", v)}
-        className="text-4xl font-bold text-foreground mb-4"
+        className="text-5xl font-extrabold text-foreground leading-tight"
       />
       <EditableText
         as="p"
         value={content.subtitle || "Click the buttons below for official guides:"}
         onChange={(v) => onUpdate("subtitle", v)}
-        className="text-xl text-muted-foreground mb-10"
+        className="text-xl text-muted-foreground mt-1"
       />
-      <div className="grid grid-cols-2 gap-6">
-        {links.map((link) => (
-          <div
-            key={link.key}
-            className={`rounded-xl p-6 bg-gradient-to-r ${link.color} text-white flex items-center gap-4 cursor-pointer hover:scale-[1.02] transition-transform`}
-          >
-            <ExternalLink className="w-6 h-6 shrink-0" />
-            <EditableText
-              as="p"
-              value={content[link.key] || link.label}
-              onChange={(v) => onUpdate(link.key, v)}
-              className="text-lg font-semibold text-white"
-            />
-          </div>
-        ))}
-      </div>
-    </GlassPanel>
+    </div>
+    <div className="flex-1 grid grid-cols-2 gap-6 min-h-0">
+      {links.map((link) => (
+        <div
+          key={link.key}
+          className={`rounded-2xl p-8 bg-gradient-to-r ${link.color} text-white flex items-center gap-4 cursor-pointer hover:scale-[1.02] transition-transform`}
+        >
+          <ExternalLink className="w-6 h-6 shrink-0" />
+          <EditableText
+            as="p"
+            value={content[link.key] || link.label}
+            onChange={(v) => onUpdate(link.key, v)}
+            className="text-lg font-semibold text-white"
+          />
+        </div>
+      ))}
+    </div>
   </div>
 );
 

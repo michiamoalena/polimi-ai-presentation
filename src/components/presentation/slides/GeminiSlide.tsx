@@ -1,45 +1,112 @@
 import EditableText from "../EditableText";
 import GlassPanel from "../GlassPanel";
-import { Sparkles } from "lucide-react";
+import { GraduationCap, LayoutGrid, Zap } from "lucide-react";
 
 interface Props {
   content: Record<string, string>;
   onUpdate: (key: string, value: string) => void;
 }
 
+const loopSteps = [
+  { num: 1, color: "bg-orange-500", def: "Analyze book" },
+  { num: 2, color: "bg-pink-500", def: "Extract materials" },
+  { num: 3, color: "bg-violet-500", def: 'Generate "Cheat Code" prompt' },
+];
+
+const features = [
+  {
+    key: "hack",
+    icon: <GraduationCap className="w-5 h-5 text-orange-500" />,
+    title: "Student Hack",
+    def: "1-year FREE subscription (Google One AI Premium).",
+  },
+  {
+    key: "multi",
+    icon: <LayoutGrid className="w-5 h-5 text-pink-500" />,
+    title: "Multimodal",
+    def: "Upload the novel PDF + your hand sketches.",
+  },
+  {
+    key: "nano",
+    icon: <Zap className="w-5 h-5 text-violet-500" />,
+    title: "Nano Banana 2",
+    def: "High-speed concept generation.",
+  },
+];
+
 const GeminiSlide = ({ content, onUpdate }: Props) => (
-  <div className="w-full h-full flex items-center justify-center gap-8">
-    <GlassPanel className="max-w-2xl w-full p-12">
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center">
-          <Sparkles className="w-7 h-7 text-white" />
-        </div>
+  <div className="w-full h-full flex flex-col">
+    {/* Header */}
+    <div className="mb-6">
+      <EditableText
+        as="h1"
+        value={content.heading || "Gemini"}
+        onChange={(v) => onUpdate("heading", v)}
+        className="text-5xl font-extrabold text-foreground leading-tight"
+      />
+      <EditableText
+        as="p"
+        value={content.sub || "Your Professional Hub"}
+        onChange={(v) => onUpdate("sub", v)}
+        className="text-xl text-muted-foreground mt-1"
+      />
+    </div>
+
+    {/* Two-column grid */}
+    <div className="flex-1 grid grid-cols-2 gap-6 min-h-0">
+      {/* Left — The Loop */}
+      <GlassPanel className="p-8 flex flex-col justify-center">
         <EditableText
-          as="h2"
-          value={content.heading || "Gemini — Your Professional Hub"}
-          onChange={(v) => onUpdate("heading", v)}
-          className="text-4xl font-bold text-foreground"
+          as="h3"
+          value={content.loopTitle || "The Loop"}
+          onChange={(v) => onUpdate("loopTitle", v)}
+          className="text-2xl font-bold text-foreground mb-8"
         />
-      </div>
-      <div className="space-y-5">
-        {[
-          { key: "hack", def: "Student Hack: 1-year FREE subscription (Google One AI Premium)." },
-          { key: "multi", def: "Multimodal: Upload the novel PDF + your hand sketches." },
-          { key: "nano", def: "Nano Banana 2: High-speed concept generation." },
-          { key: "loop", def: 'The Loop: Analyze book → Extract materials → Generate "Cheat Code" prompt.' },
-        ].map(({ key, def }) => (
-          <div key={key} className="flex gap-4 items-start">
-            <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 mt-3 shrink-0" />
+        <div className="space-y-2">
+          {loopSteps.map((step, i) => (
+            <div key={step.num}>
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-background/60">
+                <div className={`w-8 h-8 rounded-full ${step.color} text-white flex items-center justify-center text-sm font-bold shrink-0`}>
+                  {step.num}
+                </div>
+                <EditableText
+                  as="p"
+                  value={content[`loop${step.num}`] || step.def}
+                  onChange={(v) => onUpdate(`loop${step.num}`, v)}
+                  className="text-lg text-foreground/85"
+                />
+              </div>
+              {i < loopSteps.length - 1 && (
+                <div className="ml-8 h-6 border-l-2 border-muted-foreground/20" />
+              )}
+            </div>
+          ))}
+        </div>
+      </GlassPanel>
+
+      {/* Right — Feature cards */}
+      <div className="flex flex-col gap-4">
+        {features.map((f) => (
+          <GlassPanel key={f.key} className="p-6 flex-1 flex flex-col justify-center">
+            <div className="flex items-center gap-3 mb-2">
+              {f.icon}
+              <EditableText
+                as="h3"
+                value={content[`${f.key}Title`] || f.title}
+                onChange={(v) => onUpdate(`${f.key}Title`, v)}
+                className="text-lg font-bold text-foreground"
+              />
+            </div>
             <EditableText
               as="p"
-              value={content[key] || def}
-              onChange={(v) => onUpdate(key, v)}
-              className="text-xl text-foreground/85 leading-relaxed"
+              value={content[f.key] || f.def}
+              onChange={(v) => onUpdate(f.key, v)}
+              className="text-base text-muted-foreground leading-relaxed"
             />
-          </div>
+          </GlassPanel>
         ))}
       </div>
-    </GlassPanel>
+    </div>
   </div>
 );
 
