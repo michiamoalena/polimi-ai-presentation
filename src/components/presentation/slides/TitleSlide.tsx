@@ -19,12 +19,6 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
     {/* Title — vertically centered, above gradient */}
     <div className="flex-1 flex flex-col justify-center max-w-5xl pb-20 relative z-10">
       <EditableText
-        as="p"
-        value={content.label || "Presentation:"}
-        onChange={(v) => onUpdate("label", v)}
-        className="text-2xl text-muted-foreground font-medium mb-4"
-      />
-      <EditableText
         as="h1"
         value={content.title || "Meta & Techno Skills of working with Gen AI"}
         onChange={(v) => onUpdate("title", v)}
