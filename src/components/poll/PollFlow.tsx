@@ -11,8 +11,8 @@ interface PollState {
 }
 
 const ROLES = ["Architect", "Urbanist", "Engineer"];
-const STATUSES = ["Erasmus Student", "Resident"];
-const AI_TOOLS = ["ChatGPT", "Gemini", "Midjourney", "Kling AI", "LookX", "Other"];
+const STATUSES = ["Erasmus Student", "Polimi Resident Student"];
+const AI_TOOLS = ["ChatGPT", "Gemini", "Midjourney", "Kling AI", "Other"];
 const NO_REASONS = ["Too complex", "Not accurate", "Don't trust it", "Other"];
 
 const PollFlow = () => {
