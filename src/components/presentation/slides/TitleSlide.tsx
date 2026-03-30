@@ -7,17 +7,17 @@ interface Props {
 }
 
 const TitleSlide = ({ content, onUpdate }: Props) => (
-  <div className="w-full h-full flex flex-col px-4 relative overflow-hidden">
-    {/* Full-slide radial gradient from bottom-right corner */}
+  <div className="w-full h-full flex flex-col px-4 relative">
+    {/* Gradient covers entire viewport — no frame possible */}
     <div
-      className="absolute pointer-events-none -inset-10"
+      className="fixed inset-0 pointer-events-none z-20"
       style={{
-        background: 'radial-gradient(ellipse 110% 110% at 100% 100%, rgba(236,72,153,0.5) 0%, rgba(168,85,247,0.3) 25%, rgba(251,146,60,0.12) 45%, transparent 65%)',
+        background: 'radial-gradient(ellipse 80% 80% at 95% 95%, rgba(236,72,153,0.50) 0%, rgba(168,85,247,0.30) 20%, rgba(251,146,60,0.12) 40%, transparent 60%)',
       }}
     />
 
     {/* Title — vertically centered, above gradient */}
-    <div className="flex-1 flex flex-col justify-center max-w-5xl pb-20 relative z-10">
+    <div className="flex-1 flex flex-col justify-center max-w-5xl pb-20 relative z-30">
       <EditableText
         as="h1"
         value={content.title || "Meta & Techno Skills of working with Gen AI"}
@@ -34,7 +34,7 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
     </div>
 
     {/* Footer — single line with all info */}
-    <div className="absolute bottom-8 left-10 right-10">
+    <div className="absolute bottom-8 left-10 right-10 z-30">
       <div className="flex w-full items-end justify-between">
         <div className="flex items-baseline gap-3 leading-none">
           <EditableText
