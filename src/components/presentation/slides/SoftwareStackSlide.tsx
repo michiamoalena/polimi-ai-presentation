@@ -4,7 +4,7 @@ import logoGemini from "@/assets/logo-gemini.png";
 import logoChatGPT from "@/assets/logo-chatgpt.png";
 import logoMidjourney from "@/assets/logo-midjourney.png";
 import logoKling from "@/assets/logo-kling.png";
-import logoLookX from "@/assets/logo-lookx.png";
+
 
 interface Props {
   content: Record<string, string>;
@@ -15,7 +15,7 @@ const rows = [
   { task: "Brainstorm & Analyze", tool: "Gemini", why: "FREE for students. Best for long PDFs/Books.", logo: logoGemini },
   { task: "Quick Fixes & Edits", tool: "ChatGPT (Canvas)", why: 'Best "Brush" tool. Fix details by talking to the image.', logo: logoChatGPT },
   { task: "Aesthetic Mastery", tool: "Midjourney", why: "Best lighting/textures. Use --sref for style.", logo: logoMidjourney },
-  { task: "Camera & POV", tool: "Kling AI / LookX", why: "Set exact angles (Top-down, Pan, Tilt, Zoom).", logos: [logoKling, logoLookX] },
+  { task: "Camera & POV", tool: "Kling AI", why: "Set exact angles (Top-down, Pan, Tilt, Zoom).", logo: logoKling },
 ];
 
 const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
@@ -51,15 +51,7 @@ const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
               />
             </div>
             <div className="p-5 flex items-center gap-3">
-              {"logo" in row && row.logo ? (
-                <img src={row.logo} alt="" className="w-8 h-8 object-contain shrink-0" />
-              ) : "logos" in row && row.logos ? (
-                <div className="flex gap-1.5 shrink-0">
-                  {row.logos.map((l, j) => (
-                    <img key={j} src={l} alt="" className="w-8 h-8 object-contain" />
-                  ))}
-                </div>
-              ) : null}
+              <img src={row.logo} alt="" className="w-8 h-8 object-contain shrink-0" />
               <EditableText
                 value={content[`tool${i}`] || row.tool}
                 onChange={(v) => onUpdate(`tool${i}`, v)}
