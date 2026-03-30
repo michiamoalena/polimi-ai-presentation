@@ -9,16 +9,17 @@ interface Props {
 const rows = [
   { task: "Brainstorm & Analyze", tool: "Gemini", why: "FREE for students. Best for long PDFs/Books." },
   { task: "Quick Fixes & Edits", tool: "ChatGPT (Canvas)", why: 'Best "Brush" tool. Fix details by talking to the image.' },
-  { task: "Aesthetic Mastery", tool: "Midjourney", why: "Best lighting and textures. Use --sref for style." },
-  { task: "Camera & POV", tool: "Kling AI / LookX", why: "Set exact angles (Top-down, 2-point perspective)." },
+  { task: "Aesthetic Mastery", tool: "Midjourney", why: "Best lighting/textures. Use --sref for style." },
+  { task: "Camera & POV", tool: "Kling AI / LookX", why: "Set exact angles (Top-down, Pan, Tilt, Zoom)." },
 ];
 
+// пометка: добавить официальные иконки/логотипы для каждого инструмента
 const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col">
     <div className="mb-6">
       <EditableText
         as="h1"
-        value={content.heading || "Your Software Stack"}
+        value={content.heading || "The Techno-Stack"}
         onChange={(v) => onUpdate("heading", v)}
         className="text-6xl font-extrabold text-foreground leading-tight"
       />
@@ -30,6 +31,8 @@ const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
       />
     </div>
     <GlassPanel className="flex-1 p-8">
+      {/* TODO: добавить иконки логотипы для каждого тула */}
+      <p className="text-amber-500 text-sm font-semibold mb-4">📌 Пометка: добавить официальные иконки/логотипы для каждого инструмента</p>
       <div className="rounded-xl overflow-hidden border border-border h-full flex flex-col">
         <div className="grid grid-cols-3 bg-gradient-to-r from-violet-500/10 to-pink-500/10 font-bold text-foreground">
           <div className="p-5 text-xl">Task</div>

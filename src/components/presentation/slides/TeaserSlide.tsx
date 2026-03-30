@@ -8,11 +8,12 @@ interface Props {
 }
 
 const items = [
-  { key: "video", def: "Image-to-Video: Cinematic fly-throughs with VidMuse (Professor's Pick) and Luma." },
-  { key: "sound", def: "AI Sound: Generate atmospheric soundscapes with Gemini (Lyria) and Suno." },
+  { key: "video", def: "AI Video: Fly-throughs with VidMuse and Luma." },
+  { key: "sound", def: "AI Sound: Soundscapes with Gemini (Lyria) and Suno." },
   { key: "3d", def: "3D Magic: From 2D Image to 3D Mesh with Rodin and Meta SAM." },
 ];
 
+// пометка: дополнить список тулов для видео
 const TeaserSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col">
     <div className="mb-6 flex items-center gap-5">
@@ -26,12 +27,14 @@ const TeaserSlide = ({ content, onUpdate }: Props) => (
         />
         <EditableText
           as="p"
-          value={content.intro || "Coming soon to your studio:"}
+          value={content.intro || "Teaser"}
           onChange={(v) => onUpdate("intro", v)}
           className="text-2xl text-muted-foreground mt-2 font-medium"
         />
       </div>
     </div>
+    {/* TODO: дополнить список тулов для видео */}
+    <p className="text-amber-500 text-sm font-semibold mb-4">📌 Пометка: дополнить список тулов для AI Video</p>
     <div className="flex-1 flex flex-col gap-5 min-h-0">
       {items.map(({ key, def }) => (
         <GlassPanel key={key} className="flex-1 p-8 flex items-center">

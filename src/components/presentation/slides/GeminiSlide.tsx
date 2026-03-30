@@ -1,6 +1,6 @@
 import EditableText from "../EditableText";
 import GlassPanel from "../GlassPanel";
-import { GraduationCap, LayoutGrid, Zap } from "lucide-react";
+import { GraduationCap, LayoutGrid, Zap, Brain, ExternalLink } from "lucide-react";
 
 interface Props {
   content: Record<string, string>;
@@ -24,30 +24,27 @@ const features = [
     key: "multi",
     icon: <LayoutGrid className="w-7 h-7 text-pink-500" />,
     title: "Multimodal",
-    def: "Upload the novel PDF + your hand sketches.",
+    def: "Upload Novel PDF + your hand sketches.",
   },
   {
-    key: "nano",
-    icon: <Zap className="w-7 h-7 text-violet-500" />,
-    title: "Nano Banana 2",
-    def: "High-speed concept generation.",
+    key: "memory",
+    icon: <Brain className="w-7 h-7 text-violet-500" />,
+    title: "Memory",
+    def: "It won't forget the book's details after 100 messages.",
   },
 ];
 
+// пометка: добавить логотип Gemini
 const GeminiSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col">
     <div className="mb-6">
+      {/* TODO: добавить логотип Gemini */}
+      <p className="text-amber-500 text-sm font-semibold mb-2">📌 Пометка: добавить логотип Gemini</p>
       <EditableText
         as="h1"
-        value={content.heading || "Gemini"}
+        value={content.heading || "Gemini — Your Professional Hub"}
         onChange={(v) => onUpdate("heading", v)}
         className="text-6xl font-extrabold text-foreground leading-tight"
-      />
-      <EditableText
-        as="p"
-        value={content.sub || "Your Professional Hub"}
-        onChange={(v) => onUpdate("sub", v)}
-        className="text-2xl text-muted-foreground mt-2 font-medium"
       />
     </div>
 
@@ -99,6 +96,17 @@ const GeminiSlide = ({ content, onUpdate }: Props) => (
               onChange={(v) => onUpdate(f.key, v)}
               className="text-xl text-muted-foreground leading-relaxed font-medium"
             />
+            {f.key === "hack" && (
+              <a
+                href="https://gemini.google/students/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold text-sm hover:opacity-90 transition-opacity w-fit"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Get Free Subscription
+              </a>
+            )}
           </GlassPanel>
         ))}
       </div>

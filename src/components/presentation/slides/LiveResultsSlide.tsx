@@ -27,7 +27,7 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
       <div className="mb-6">
         <EditableText
           as="h1"
-          value={content.heading || "The PoliMi AI Pulse"}
+          value={content.heading || "The Course Data"}
           onChange={(v) => onUpdate("heading", v)}
           className="text-6xl font-extrabold text-foreground leading-tight"
         />
@@ -41,7 +41,7 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
 
       <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-4 min-h-0">
         {[
-          { title: "Role", data: toChartData(roleCount) },
+          { title: "Specialization", data: toChartData(roleCount) },
           { title: "Status", data: toChartData(statusCount) },
           { title: "Uses AI?", data: aiData },
           { title: "AI Tools", data: toChartData(toolCount) },
@@ -65,27 +65,6 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
           </GlassPanel>
         ))}
       </div>
-
-      <GlassPanel className="mt-4 p-5">
-        <div className="space-y-2">
-          {[
-            "discussion1||\"Look at our diversity! Whether you're on Erasmus or a local, we're all building the same future.\"",
-            "discussion2||\"Most use ChatGPT, but let's see if you use it as an Exoskeleton or just a search engine.\"",
-            "discussion3||\"To those who find it complex—today we fix that.\"",
-          ].map((item) => {
-            const [key, def] = item.split("||");
-            return (
-              <EditableText
-                key={key}
-                as="p"
-                value={content[key] || def}
-                onChange={(v) => onUpdate(key, v)}
-                className="text-xl text-foreground/80 italic font-medium"
-              />
-            );
-          })}
-        </div>
-      </GlassPanel>
     </div>
   );
 };

@@ -8,11 +8,11 @@ interface Props {
   onUpdate: (key: string, value: string) => void;
 }
 
-const DEFAULT_PROMPT = `Act as my Senior Architectural Partner. I am using Whispr Flow to talk to you, so clean up my thoughts.
+const DEFAULT_PROMPT = `Act as my Senior Architectural Partner. I am using Wispr Flow to talk to you, so clean up my thoughts.
 
 Phase 0: Explain the spatial vibe of my text in simple terms (ELI5).
 
-Phase 1: Ask me 3 questions to help me define the 'vibe' before we generate anything.
+Phase 1: Ask me what information you lack to understand the vision, and ask me specific questions before we generate anything.
 
 Phase 2: Generate a minimalist, low-noise prompt for Midjourney. Use 2-point perspective and clear geometry so it's easy to model in Rhino.`;
 
@@ -41,6 +41,8 @@ const CoachPromptSlide = ({ content, onUpdate }: Props) => {
           onChange={(v) => onUpdate("subtitle", v)}
           className="text-2xl text-muted-foreground mt-2 font-medium"
         />
+        {/* TODO: переписать промт согласно программе курса которую проф пришлет */}
+        <p className="text-amber-500 text-sm font-semibold mt-2">📌 Пометка: переписать промт согласно программе курса которую проф пришлёт</p>
       </div>
 
       <GlassPanel className="flex-1 p-8 relative">

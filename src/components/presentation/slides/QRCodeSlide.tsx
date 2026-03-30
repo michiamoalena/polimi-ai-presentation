@@ -1,6 +1,7 @@
 import { QRCodeSVG } from "qrcode.react";
 import EditableText from "../EditableText";
 import GlassPanel from "../GlassPanel";
+import { ExternalLink } from "lucide-react";
 
 interface Props {
   content: Record<string, string>;
@@ -14,7 +15,7 @@ const QRCodeSlide = ({ content, onUpdate, pollUrl, liveCount }: Props) => (
     <div className="mb-6">
       <EditableText
         as="h1"
-        value={content.heading || "Let's Connect!"}
+        value={content.heading || "Welcome!"}
         onChange={(v) => onUpdate("heading", v)}
         className="text-6xl font-extrabold text-foreground leading-tight"
       />
@@ -32,10 +33,19 @@ const QRCodeSlide = ({ content, onUpdate, pollUrl, liveCount }: Props) => (
         </div>
         <EditableText
           as="p"
-          value={content.instruction || "Scan the QR Code to join our live session"}
+          value={content.instruction || "Scan the QR Code to join the live session"}
           onChange={(v) => onUpdate("instruction", v)}
           className="text-xl text-muted-foreground mt-6 text-center max-w-sm font-medium"
         />
+        <a
+          href={pollUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-opacity"
+        >
+          <ExternalLink className="w-5 h-5" />
+          <span>Open in browser</span>
+        </a>
       </GlassPanel>
       <GlassPanel className="flex flex-col items-center justify-center p-8">
         <EditableText
@@ -45,13 +55,19 @@ const QRCodeSlide = ({ content, onUpdate, pollUrl, liveCount }: Props) => (
           className="text-3xl font-bold text-foreground mb-6"
         />
         <div className="space-y-4 text-left w-full">
-          {["1. What is your role?", "2. Status?", "3. Do you use AI?", "4. Which tools? / Why not?"].map((q, i) => (
+          {[
+            "1. What is your specialization? (Architect / Urbanist / Engineer)",
+            "2. Status? (Erasmus / Resident)",
+            "3. Do you use AI in your daily life? (Yes / No)",
+            "4. If YES: Which tools? (ChatGPT, Gemini, Midjourney, etc.)",
+            "5. If NO: Why not? (Too complex / Not accurate / Other)",
+          ].map((q, i) => (
             <EditableText
               key={i}
               as="p"
               value={content[`q${i}`] || q}
               onChange={(v) => onUpdate(`q${i}`, v)}
-              className="text-2xl text-foreground/85 font-medium"
+              className="text-xl text-foreground/85 font-medium"
             />
           ))}
         </div>
