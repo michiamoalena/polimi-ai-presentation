@@ -1,6 +1,7 @@
 import EditableText from "../EditableText";
 import GlassPanel from "../GlassPanel";
-import { Mic, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import wisprLogo from "@/assets/wispr-flow-logo.png";
 
 interface Props {
   content: Record<string, string>;
