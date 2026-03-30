@@ -7,7 +7,10 @@ interface Props {
 }
 
 const TitleSlide = ({ content, onUpdate }: Props) => (
-  <div className="w-full h-full flex flex-col px-4 relative">
+  <div className="w-full h-full flex flex-col px-4 relative overflow-hidden">
+    {/* Vibrant gradient orb — left-center */}
+    <div className="absolute top-1/2 left-[15%] -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gradient-to-br from-orange-400/60 via-pink-500/50 to-fuchsia-500/40 blur-[120px] pointer-events-none" />
+    <div className="absolute top-[30%] left-[5%] w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-violet-500/35 to-pink-400/25 blur-[100px] pointer-events-none" />
     {/* Title — vertically centered */}
     <div className="flex-1 flex flex-col justify-center max-w-5xl pb-20">
       <EditableText
