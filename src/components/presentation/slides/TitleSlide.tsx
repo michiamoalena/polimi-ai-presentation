@@ -49,7 +49,7 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
           />
         </div>
 
-        <div className="flex items-baseline gap-3">
+        <div className="flex items-baseline gap-5">
           <EditableText
             as="p"
             value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto / 2026"}
