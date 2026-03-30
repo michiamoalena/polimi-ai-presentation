@@ -8,56 +8,69 @@ interface Props {
 }
 
 const PromptingSlide = ({ content, onUpdate }: Props) => (
-  <div className="w-full h-full flex items-center justify-center gap-8">
-    <GlassPanel className="max-w-2xl w-full p-12">
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center">
-          <Code className="w-7 h-7 text-white" />
-        </div>
+  <div className="w-full h-full flex flex-col">
+    <div className="mb-6 flex items-center gap-5">
+      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center">
+        <Code className="w-7 h-7 text-white" />
+      </div>
+      <div>
         <EditableText
-          as="h2"
-          value={content.heading || "Architectural Prompting (The Cheat Code)"}
+          as="h1"
+          value={content.heading || "Architectural Prompting"}
           onChange={(v) => onUpdate("heading", v)}
-          className="text-4xl font-bold text-foreground"
+          className="text-6xl font-extrabold text-foreground leading-tight"
         />
-      </div>
-      <div className="space-y-5">
-        {[
-          { key: "goal", def: "The Goal: A clean image that is easy to redraw in Rhino." },
-          { key: "noise", def: 'Avoid "Noise": Don\'t ask for "beautiful" (it creates mess). Ask for Logic.' },
-        ].map(({ key, def }) => (
-          <EditableText
-            key={key}
-            as="p"
-            value={content[key] || def}
-            onChange={(v) => onUpdate(key, v)}
-            className="text-xl text-foreground/85 leading-relaxed"
-          />
-        ))}
-      </div>
-    </GlassPanel>
-
-    <GlassPanel className="max-w-md w-full p-8">
-      <h3 className="text-xl font-bold text-foreground mb-4">The Formula</h3>
-      <div className="bg-foreground/5 rounded-xl p-6 font-mono text-lg space-y-2">
-        {["[2-point perspective]", "[Minimalist volumes]", "[Sharp edges]", "[Straight vertical lines]"].map((line, i) => (
-          <EditableText
-            key={i}
-            value={content[`formula${i}`] || `+ ${line}`}
-            onChange={(v) => onUpdate(`formula${i}`, v)}
-            className="text-foreground/90"
-          />
-        ))}
-      </div>
-      <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-orange-500/10 to-pink-500/10">
         <EditableText
           as="p"
-          value={content.hack || "MJ Hack: Use --s 0 to stop the AI from adding unnecessary artistic details."}
-          onChange={(v) => onUpdate("hack", v)}
-          className="text-base font-medium text-foreground/90"
+          value={content.sub || "The Cheat Code"}
+          onChange={(v) => onUpdate("sub", v)}
+          className="text-2xl text-muted-foreground mt-1 font-medium"
         />
       </div>
-    </GlassPanel>
+    </div>
+
+    <div className="flex-1 grid grid-cols-[1fr_auto] gap-6 min-h-0">
+      <GlassPanel className="p-8 flex flex-col justify-center">
+        <div className="space-y-5">
+          {[
+            { key: "goal", def: "The Goal: A clean image that is easy to redraw in Rhino." },
+            { key: "noise", def: 'Avoid "Noise": Don\'t ask for "beautiful" (it creates mess). Ask for Logic.' },
+          ].map(({ key, def }) => (
+            <div key={key} className="flex gap-4 items-start p-5 rounded-xl bg-background/40">
+              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 mt-3 shrink-0" />
+              <EditableText
+                as="p"
+                value={content[key] || def}
+                onChange={(v) => onUpdate(key, v)}
+                className="text-2xl text-foreground/90 leading-relaxed font-medium"
+              />
+            </div>
+          ))}
+        </div>
+      </GlassPanel>
+
+      <GlassPanel className="w-96 p-8 flex flex-col justify-center">
+        <h3 className="text-2xl font-bold text-foreground mb-5">The Formula</h3>
+        <div className="bg-foreground/5 rounded-xl p-6 font-mono text-xl space-y-3">
+          {["[2-point perspective]", "[Minimalist volumes]", "[Sharp edges]", "[Straight vertical lines]"].map((line, i) => (
+            <EditableText
+              key={i}
+              value={content[`formula${i}`] || `+ ${line}`}
+              onChange={(v) => onUpdate(`formula${i}`, v)}
+              className="text-foreground/90"
+            />
+          ))}
+        </div>
+        <div className="mt-6 p-5 rounded-xl bg-gradient-to-r from-orange-500/10 to-pink-500/10">
+          <EditableText
+            as="p"
+            value={content.hack || "MJ Hack: Use --s 0 to stop the AI from adding unnecessary artistic details."}
+            onChange={(v) => onUpdate("hack", v)}
+            className="text-lg font-bold text-foreground/90"
+          />
+        </div>
+      </GlassPanel>
+    </div>
   </div>
 );
 
