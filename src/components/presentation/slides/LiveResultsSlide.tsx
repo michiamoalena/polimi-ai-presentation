@@ -13,8 +13,8 @@ interface Props {
   noReasonCount?: Record<string, number>;
 }
 
-const BUBBLE_COLORS = [
-  "from-orange-400 to-pink-500",
+const BAR_GRADIENTS = [
+  "from-orange-500 to-pink-500",
   "from-pink-500 to-fuchsia-500",
   "from-violet-500 to-purple-600",
   "from-cyan-400 to-blue-500",
@@ -31,7 +31,7 @@ interface StatCardProps {
 }
 
 const StatCard = ({ label, items, total }: StatCardProps) => (
-  <GlassPanel className="p-5 flex flex-col">
+  <GlassPanel className="p-5 flex flex-col h-full">
     <h3 className="text-lg font-bold text-foreground mb-3">{label}</h3>
     <div className="flex-1 flex flex-col justify-center gap-2">
       {items.length === 0 && (
@@ -61,50 +61,115 @@ const StatCard = ({ label, items, total }: StatCardProps) => (
   </GlassPanel>
 );
 
-interface BubbleCloudProps {
+interface VerticalBarsProps {
   label: string;
   data: Record<string, number>;
 }
 
-const BubbleCloud = ({ label, data }: BubbleCloudProps) => {
-  const bubbles = useMemo(() => {
+const VerticalBars = ({ label, data }: VerticalBarsProps) => {
+  const bars = useMemo(() => {
     const entries = Object.entries(data).sort((a, b) => b[1] - a[1]);
     const maxCount = Math.max(...entries.map(([, c]) => c), 1);
     return entries.map(([name, count], i) => ({
       name,
       count,
-      scale: 0.6 + (count / maxCount) * 0.4,
-      color: BUBBLE_COLORS[i % BUBBLE_COLORS.length],
+      pct: (count / maxCount) * 100,
+      gradient: BAR_GRADIENTS[i % BAR_GRADIENTS.length],
     }));
   }, [data]);
 
   return (
-    <GlassPanel className="p-5 flex flex-col">
+    <GlassPanel className="p-5 flex flex-col h-full">
       <h3 className="text-lg font-bold text-foreground mb-3">{label}</h3>
-      <div className="flex-1 flex flex-wrap gap-2 items-center content-center justify-center overflow-hidden">
+      <div className="flex-1 flex items-end justify-center gap-3 min-h-0">
         <AnimatePresence>
-          {bubbles.length === 0 && (
-            <p className="text-muted-foreground text-base italic">Waiting for responses…</p>
+          {bars.length === 0 && (
+            <p className="text-muted-foreground text-base italic pb-4">Waiting for responses…</p>
           )}
-          {bubbles.map((b) => (
+          {bars.map((b) => (
             <motion.div
               key={b.name}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className={`bg-gradient-to-br ${b.color} rounded-full flex items-center justify-center text-white font-bold shadow-lg`}
-              style={{
-                width: `${Math.round(b.scale * 110)}px`,
-                height: `${Math.round(b.scale * 110)}px`,
-                fontSize: `${Math.max(11, Math.round(b.scale * 16))}px`,
-              }}
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="flex flex-col items-center gap-1 origin-bottom"
+              style={{ flex: "1 1 0", maxWidth: 80 }}
             >
-              <div className="text-center leading-tight px-1">
-                <div className="truncate max-w-[90px]">{b.name}</div>
-                <div className="text-white/80 text-xs">{b.count}</div>
+              <span className="text-sm font-bold text-foreground tabular-nums">{b.count}</span>
+              <div className="w-full rounded-t-lg overflow-hidden bg-foreground/5" style={{ height: 140 }}>
+                <motion.div
+                  className={`w-full rounded-t-lg bg-gradient-to-t ${b.gradient}`}
+                  initial={{ height: 0 }}
+                  animate={{ height: `${Math.max(b.pct, 8)}%` }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                  style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
+                />
+                <div className="relative w-full h-full">
+                  <motion.div
+                    className={`absolute bottom-0 left-0 right-0 rounded-t-lg bg-gradient-to-t ${b.gradient}`}
+                    initial={{ height: 0 }}
+                    animate={{ height: `${Math.max(b.pct, 8)}%` }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                  />
+                </div>
               </div>
+              <span className="text-xs font-medium text-foreground text-center leading-tight truncate w-full">{b.name}</span>
             </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+    </GlassPanel>
+  );
+};
+
+interface WordCloudProps {
+  label: string;
+  data: Record<string, number>;
+}
+
+const WordCloud = ({ label, data }: WordCloudProps) => {
+  const words = useMemo(() => {
+    const entries = Object.entries(data).sort((a, b) => b[1] - a[1]);
+    const maxCount = Math.max(...entries.map(([, c]) => c), 1);
+    return entries.map(([text, count]) => ({
+      text,
+      count,
+      scale: 0.6 + (count / maxCount) * 1.4, // font scale from 0.6x to 2x
+    }));
+  }, [data]);
+
+  const WORD_COLORS = [
+    "text-orange-500",
+    "text-pink-500",
+    "text-violet-500",
+    "text-cyan-500",
+    "text-emerald-500",
+    "text-amber-500",
+    "text-rose-500",
+    "text-indigo-500",
+  ];
+
+  return (
+    <GlassPanel className="p-5 flex flex-col h-full">
+      <h3 className="text-lg font-bold text-foreground mb-3">{label}</h3>
+      <div className="flex-1 flex flex-wrap gap-3 items-center content-center justify-center overflow-hidden">
+        <AnimatePresence>
+          {words.length === 0 && (
+            <p className="text-muted-foreground text-base italic">Waiting for responses…</p>
+          )}
+          {words.map((w, i) => (
+            <motion.span
+              key={w.text}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className={`font-bold ${WORD_COLORS[i % WORD_COLORS.length]} whitespace-nowrap`}
+              style={{ fontSize: `${Math.round(w.scale * 22)}px` }}
+            >
+              {w.text}
+              <span className="text-foreground/40 ml-1" style={{ fontSize: "0.6em" }}>{w.count}</span>
+            </motion.span>
           ))}
         </AnimatePresence>
       </div>
@@ -145,16 +210,16 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
       </div>
 
       <div className="flex-1 grid grid-cols-3 grid-rows-2 gap-4 min-h-0">
-        {/* Row 1: Metrics */}
+        {/* Row 1: Horizontal bar metrics */}
         <StatCard label="Specialization" items={toItems(roleCount)} total={total} />
         <StatCard label="Status" items={toItems(statusCount)} total={total} />
         <StatCard label="Uses AI?" items={aiItems} total={total} />
 
-        {/* Row 2: Bubble clouds */}
+        {/* Row 2: Vertical bars for tools, Word cloud for reasons */}
+        <VerticalBars label="AI Tools" data={toolCount} />
         <div className="col-span-2 min-h-0">
-          <BubbleCloud label="AI Tools" data={toolCount} />
+          <WordCloud label="Why not AI?" data={noReasonCount} />
         </div>
-        <BubbleCloud label="Why not AI?" data={noReasonCount} />
       </div>
     </div>
   );
