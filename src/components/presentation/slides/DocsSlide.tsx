@@ -2,7 +2,7 @@ import EditableText from "../EditableText";
 import GlassPanel from "../GlassPanel";
 import { ExternalLink } from "lucide-react";
 import logoGemini from "@/assets/logo-gemini.png";
-import logoChatGPT from "@/assets/logo-chatgpt.png";
+import logoChatGPT from "@/assets/logo-openai.png";
 import logoMidjourney from "@/assets/logo-midjourney.png";
 import logoKling from "@/assets/logo-kling.png";
 
