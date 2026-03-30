@@ -51,7 +51,7 @@ const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
               />
             </div>
             <div className="p-5 flex items-center gap-3">
-              <img src={row.logo} alt="" className="w-8 h-8 object-contain shrink-0" />
+              <img src={row.logo} alt="" className="w-12 h-12 object-contain shrink-0" />
               <EditableText
                 value={content[`tool${i}`] || row.tool}
                 onChange={(v) => onUpdate(`tool${i}`, v)}
