@@ -49,14 +49,14 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
           />
         </div>
 
-        <div className="flex items-baseline gap-4">
+        <div className="flex items-baseline gap-3">
           <EditableText
             as="p"
             value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto / 2026"}
             onChange={(v) => onUpdate("course", v)}
             className="text-lg font-semibold text-foreground"
           />
-          <img src={polimiLogo} alt="Politecnico di Milano" className="h-16 w-auto translate-y-[6px]" />
+          <img src={polimiLogo} alt="Politecnico di Milano" className="h-[3.2rem] w-auto translate-y-[8px]" />
         </div>
       </div>
     </div>
