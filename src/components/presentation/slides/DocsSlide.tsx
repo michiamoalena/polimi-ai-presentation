@@ -17,6 +17,7 @@ const tools = [
     name: "Gemini",
     logo: logoGemini,
     accent: "border-violet-400/40 hover:border-violet-400",
+    linkGradient: "from-violet-500 to-purple-600",
     links: [
       { label: "Image Generation Prompting Tips", url: "https://blog.google/products/gemini/image-generation-prompting-tips/" },
       { label: "Nano Banana Pro: Advanced Tips", url: "https://blog.google/products/gemini/prompting-tips-nano-banana-pro/" },
@@ -27,6 +28,7 @@ const tools = [
     name: "ChatGPT",
     logo: logoChatGPT,
     accent: "border-pink-400/40 hover:border-pink-400",
+    linkGradient: "from-pink-500 to-rose-500",
     links: [
       { label: "Creating Images in ChatGPT", url: "https://help.openai.com/en/articles/8932459-creating-images-in-chatgpt" },
       { label: "Editing Images with ChatGPT", url: "https://help.openai.com/en/articles/9055440-editing-your-images-with-dall-e" },
@@ -37,6 +39,7 @@ const tools = [
     name: "Midjourney",
     logo: logoMidjourney,
     accent: "border-orange-400/40 hover:border-orange-400",
+    linkGradient: "from-orange-500 to-pink-500",
     links: [
       { label: "Getting Started Guide", url: "https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide" },
       { label: "Prompt Basics", url: "https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics" },
@@ -47,6 +50,7 @@ const tools = [
     name: "Kling AI",
     logo: logoKling,
     accent: "border-fuchsia-400/40 hover:border-fuchsia-400",
+    linkGradient: "from-fuchsia-500 to-violet-500",
     links: [
       { label: "Camera Control Guide", url: "https://app.klingai.com/global/quickstart/ai-camera-control-guide" },
       { label: "Video 3.0 Director Guide", url: "https://app.klingai.com/global/blog/kling-video-3-0-ai-director-features-guide" },
@@ -74,22 +78,22 @@ const DocsSlide = ({ content, onUpdate }: Props) => (
       {tools.map((tool) => (
         <GlassPanel
           key={tool.key}
-          className={`p-5 flex flex-col gap-3 border-2 ${tool.accent} transition-colors`}
+          className={`p-6 flex flex-col justify-center gap-4 border-2 ${tool.accent} transition-colors`}
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <img src={tool.logo} alt={tool.name} className="w-16 h-16 object-contain shrink-0" />
-            <span className="text-xl font-bold text-foreground">{tool.name}</span>
+            <span className="text-3xl font-bold text-foreground">{tool.name}</span>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             {tool.links.map((link, i) => (
               <a
                 key={i}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-base text-foreground/80 hover:text-foreground font-medium transition-colors group"
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r ${tool.linkGradient} text-white font-semibold text-lg hover:opacity-90 transition-opacity`}
               >
-                <ExternalLink className="w-4 h-4 shrink-0 text-muted-foreground group-hover:text-foreground transition-colors" />
+                <ExternalLink className="w-5 h-5 shrink-0" />
                 <span className="truncate">{link.label}</span>
               </a>
             ))}
