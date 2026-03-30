@@ -23,35 +23,37 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
   ];
 
   return (
-    <div className="w-full h-full flex flex-col gap-6">
-      <EditableText
-        as="h2"
-        value={content.heading || "The PoliMi AI Pulse"}
-        onChange={(v) => onUpdate("heading", v)}
-        className="text-4xl font-bold text-foreground text-center"
-      />
-      <EditableText
-        as="p"
-        value={content.subtitle || "Live Results"}
-        onChange={(v) => onUpdate("subtitle", v)}
-        className="text-xl text-muted-foreground text-center"
-      />
+    <div className="w-full h-full flex flex-col">
+      <div className="mb-6">
+        <EditableText
+          as="h1"
+          value={content.heading || "The PoliMi AI Pulse"}
+          onChange={(v) => onUpdate("heading", v)}
+          className="text-6xl font-extrabold text-foreground leading-tight"
+        />
+        <EditableText
+          as="p"
+          value={content.subtitle || "Live Results"}
+          onChange={(v) => onUpdate("subtitle", v)}
+          className="text-2xl text-muted-foreground mt-2 font-medium"
+        />
+      </div>
 
-      <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-4 min-h-0">
         {[
           { title: "Role", data: toChartData(roleCount) },
           { title: "Status", data: toChartData(statusCount) },
           { title: "Uses AI?", data: aiData },
           { title: "AI Tools", data: toChartData(toolCount) },
         ].map((chart) => (
-          <GlassPanel key={chart.title} className="p-4 flex flex-col">
-            <h3 className="text-lg font-semibold text-foreground mb-2">{chart.title}</h3>
+          <GlassPanel key={chart.title} className="p-5 flex flex-col">
+            <h3 className="text-xl font-bold text-foreground mb-3">{chart.title}</h3>
             <div className="flex-1 min-h-0">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chart.data} margin={{ top: 5, right: 5, bottom: 20, left: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                  <XAxis dataKey="name" tick={{ fontSize: 12 }} angle={-20} textAnchor="end" />
-                  <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
+                  <XAxis dataKey="name" tick={{ fontSize: 14, fontWeight: 600 }} angle={-20} textAnchor="end" />
+                  <YAxis allowDecimals={false} tick={{ fontSize: 14 }} />
                   <Bar dataKey="value" radius={[6, 6, 0, 0]}>
                     {chart.data.map((_, i) => (
                       <Cell key={i} fill={COLORS[i % COLORS.length]} />
@@ -64,7 +66,7 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
         ))}
       </div>
 
-      <GlassPanel className="p-4">
+      <GlassPanel className="mt-4 p-5">
         <div className="space-y-2">
           {[
             "discussion1||\"Look at our diversity! Whether you're on Erasmus or a local, we're all building the same future.\"",
@@ -78,7 +80,7 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
                 as="p"
                 value={content[key] || def}
                 onChange={(v) => onUpdate(key, v)}
-                className="text-base text-foreground/80 italic"
+                className="text-xl text-foreground/80 italic font-medium"
               />
             );
           })}

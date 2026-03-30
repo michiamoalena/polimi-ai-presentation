@@ -14,41 +14,49 @@ const rows = [
 ];
 
 const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
-  <div className="w-full h-full flex items-center justify-center">
-    <GlassPanel className="max-w-5xl w-full p-12">
+  <div className="w-full h-full flex flex-col">
+    <div className="mb-6">
       <EditableText
-        as="h2"
-        value={content.heading || "Your Software Stack (Grouped by Need)"}
+        as="h1"
+        value={content.heading || "Your Software Stack"}
         onChange={(v) => onUpdate("heading", v)}
-        className="text-4xl font-bold text-foreground mb-8"
+        className="text-6xl font-extrabold text-foreground leading-tight"
       />
-      <div className="rounded-xl overflow-hidden border border-border">
-        <div className="grid grid-cols-3 bg-gradient-to-r from-violet-500/10 to-pink-500/10 font-semibold text-foreground">
-          <div className="p-4 text-lg">Task</div>
-          <div className="p-4 text-lg">Tool</div>
-          <div className="p-4 text-lg">Why?</div>
+      <EditableText
+        as="p"
+        value={content.sub || "Grouped by Need"}
+        onChange={(v) => onUpdate("sub", v)}
+        className="text-2xl text-muted-foreground mt-2 font-medium"
+      />
+    </div>
+    <GlassPanel className="flex-1 p-8">
+      <div className="rounded-xl overflow-hidden border border-border h-full flex flex-col">
+        <div className="grid grid-cols-3 bg-gradient-to-r from-violet-500/10 to-pink-500/10 font-bold text-foreground">
+          <div className="p-5 text-xl">Task</div>
+          <div className="p-5 text-xl">Tool</div>
+          <div className="p-5 text-xl">Why?</div>
         </div>
         {rows.map((row, i) => (
-          <div key={i} className="grid grid-cols-3 border-t border-border">
-            <div className="p-4">
+          <div key={i} className="grid grid-cols-3 border-t border-border flex-1">
+            <div className="p-5 flex items-center">
               <EditableText
                 value={content[`task${i}`] || row.task}
                 onChange={(v) => onUpdate(`task${i}`, v)}
-                className="text-lg text-foreground"
+                className="text-xl text-foreground font-medium"
               />
             </div>
-            <div className="p-4">
+            <div className="p-5 flex items-center">
               <EditableText
                 value={content[`tool${i}`] || row.tool}
                 onChange={(v) => onUpdate(`tool${i}`, v)}
-                className="text-lg font-semibold text-foreground"
+                className="text-xl font-bold text-foreground"
               />
             </div>
-            <div className="p-4">
+            <div className="p-5 flex items-center">
               <EditableText
                 value={content[`why${i}`] || row.why}
                 onChange={(v) => onUpdate(`why${i}`, v)}
-                className="text-lg text-foreground/80"
+                className="text-xl text-foreground/80 font-medium"
               />
             </div>
           </div>

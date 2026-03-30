@@ -27,38 +27,38 @@ const CoachPromptSlide = ({ content, onUpdate }: Props) => {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <GlassPanel className="max-w-4xl w-full p-12">
+    <div className="w-full h-full flex flex-col">
+      <div className="mb-6">
         <EditableText
-          as="h2"
+          as="h1"
           value={content.heading || "The Ultimate AI Coach Prompt"}
           onChange={(v) => onUpdate("heading", v)}
-          className="text-4xl font-bold text-foreground mb-4"
+          className="text-6xl font-extrabold text-foreground leading-tight"
         />
         <EditableText
           as="p"
           value={content.subtitle || "Copy-paste this to any Chat (Gemini or ChatGPT) to start your project:"}
           onChange={(v) => onUpdate("subtitle", v)}
-          className="text-xl text-muted-foreground mb-8"
+          className="text-2xl text-muted-foreground mt-2 font-medium"
         />
+      </div>
 
-        <div className="relative">
-          <div className="bg-foreground/5 rounded-xl p-8 font-mono text-base leading-relaxed border border-border">
-            <EditableText
-              as="p"
-              value={prompt}
-              onChange={(v) => onUpdate("prompt", v)}
-              className="text-foreground/90 whitespace-pre-wrap"
-              multiline
-            />
-          </div>
-          <button
-            onClick={handleCopy}
-            className="absolute top-4 right-4 p-2 rounded-lg glass-panel hover:scale-105 transition-transform"
-          >
-            {copied ? <Check className="w-5 h-5 text-green-500" /> : <Copy className="w-5 h-5 text-foreground/60" />}
-          </button>
+      <GlassPanel className="flex-1 p-8 relative">
+        <div className="bg-foreground/5 rounded-xl p-8 font-mono text-xl leading-relaxed border border-border h-full">
+          <EditableText
+            as="p"
+            value={prompt}
+            onChange={(v) => onUpdate("prompt", v)}
+            className="text-foreground/90 whitespace-pre-wrap"
+            multiline
+          />
         </div>
+        <button
+          onClick={handleCopy}
+          className="absolute top-12 right-12 p-3 rounded-xl glass-panel hover:scale-105 transition-transform"
+        >
+          {copied ? <Check className="w-7 h-7 text-green-500" /> : <Copy className="w-7 h-7 text-foreground/60" />}
+        </button>
       </GlassPanel>
     </div>
   );
