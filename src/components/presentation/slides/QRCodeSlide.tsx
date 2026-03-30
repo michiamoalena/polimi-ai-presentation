@@ -57,7 +57,7 @@ const QRCodeSlide = ({ content, onUpdate, pollUrl, liveCount }: Props) => (
         <div className="space-y-4 text-left w-full">
           {[
             "1. What is your specialization? (Architect / Urbanist / Engineer)",
-            "2. Status? (Erasmus / Resident)",
+            "2. Status? (Erasmus Student / Polimi Resident Student)",
             "3. Do you use AI in your daily life? (Yes / No)",
             "4. If YES: Which tools? (ChatGPT, Gemini, Midjourney, etc.)",
             "5. If NO: Why not? (Too complex / Not accurate / Other)",
