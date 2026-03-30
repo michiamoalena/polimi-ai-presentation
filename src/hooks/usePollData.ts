@@ -47,6 +47,7 @@ export function usePollData() {
 
   const toolCount = responses.reduce((acc, r) => {
     r.ai_tools?.forEach((t) => {
+      if (t === "LookX") return;
       acc[t] = (acc[t] || 0) + 1;
     });
     return acc;
