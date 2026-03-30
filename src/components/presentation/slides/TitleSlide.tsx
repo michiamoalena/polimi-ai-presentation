@@ -7,48 +7,48 @@ interface Props {
 }
 
 const TitleSlide = ({ content, onUpdate }: Props) => (
-  <div className="w-full h-full flex flex-col justify-center px-4 relative">
-    <div className="max-w-5xl">
+  <div className="w-full h-full flex flex-col px-4 relative">
+    {/* Title — vertically centered, with room to breathe */}
+    <div className="flex-1 flex flex-col justify-center max-w-5xl pb-16">
       <EditableText
         as="h1"
-        value={content.title || "Meta & Techno Skills\nof working with Gen AI"}
+        value={content.title || "Meta & Techno Skills of working with Gen AI"}
         onChange={(v) => onUpdate("title", v)}
-        className="text-8xl font-extrabold text-foreground mb-8 leading-[1.05]"
+        className="text-6xl font-extrabold text-foreground mb-6 leading-[1.1]"
         multiline
       />
       <EditableText
         as="p"
         value={content.subtitle || "For Architects and Urbanists"}
         onChange={(v) => onUpdate("subtitle", v)}
-        className="text-3xl text-muted-foreground font-medium"
+        className="text-2xl text-muted-foreground font-medium"
       />
     </div>
 
-    <div className="absolute bottom-10 left-10 right-10 flex items-end justify-between">
+    {/* Footer */}
+    <div className="absolute bottom-8 left-10 right-10 flex items-end justify-between">
       <div>
         <EditableText
           as="p"
           value={content.author || "Alena Pavlova"}
           onChange={(v) => onUpdate("author", v)}
-          className="text-2xl font-bold text-foreground"
+          className="text-xl font-bold text-foreground"
         />
         <EditableText
           as="p"
           value={content.authorSub || "AI Enthusiast & PoliMi AUIC Student"}
           onChange={(v) => onUpdate("authorSub", v)}
-          className="text-lg text-muted-foreground font-medium"
+          className="text-base text-muted-foreground font-medium"
         />
       </div>
-      <div className="flex items-end gap-6">
-        <div className="text-right">
-          <EditableText
-            as="p"
-            value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto — 2026"}
-            onChange={(v) => onUpdate("course", v)}
-            className="text-lg text-muted-foreground uppercase tracking-wide font-medium"
-          />
-        </div>
-        <img src={polimiLogo} alt="Politecnico di Milano" className="h-20 w-auto opacity-80" />
+      <div className="flex items-end gap-5">
+        <EditableText
+          as="p"
+          value={content.course || "Strumenti di Rappresentazione Innovativa del Progetto — 2026"}
+          onChange={(v) => onUpdate("course", v)}
+          className="text-sm text-muted-foreground uppercase tracking-wide font-medium"
+        />
+        <img src={polimiLogo} alt="Politecnico di Milano" className="h-16 w-auto opacity-75" />
       </div>
     </div>
   </div>
