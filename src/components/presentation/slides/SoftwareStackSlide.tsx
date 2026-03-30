@@ -15,7 +15,7 @@ const rows = [
   { task: "Brainstorm & Analyze", tool: "Gemini", why: "FREE for students. Best for long PDFs/Books.", logo: logoGemini },
   { task: "Quick Fixes & Edits", tool: "ChatGPT (Canvas)", why: 'Best "Brush" tool. Fix details by talking to the image.', logo: logoChatGPT },
   { task: "Aesthetic Mastery", tool: "Midjourney", why: "Best lighting/textures. Use --sref for style.", logo: logoMidjourney },
-  { task: "Camera & POV", tool: "Kling AI / LookX", why: "Set exact angles (Top-down, Pan, Tilt, Zoom).", logos: [logoKling, logoLookX] },
+  { task: "Camera & POV", tool: "Kling AI", why: "Set exact angles (Top-down, Pan, Tilt, Zoom).", logo: logoKling },
 ];
 
 const SoftwareStackSlide = ({ content, onUpdate }: Props) => (
