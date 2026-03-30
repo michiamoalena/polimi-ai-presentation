@@ -32,7 +32,7 @@ interface StatCardProps {
 const StatCard = ({ label, items }: StatCardProps) => (
   <GlassPanel className="p-5 flex flex-col h-full">
     <h3 className="text-lg font-bold text-foreground mb-3">{label}</h3>
-    <div className="flex-1 flex flex-col justify-center gap-2">
+    <div className="flex flex-col justify-start gap-2">
       {items.length === 0 && (
         <p className="text-muted-foreground text-base italic">Waiting…</p>
       )}
@@ -191,7 +191,7 @@ const LiveResultsSlide = ({ content, onUpdate, roleCount, statusCount, aiCount, 
       </div>
 
       {/* Row 1: stat cards + tools */}
-      <div className="grid grid-cols-3 gap-4" style={{ height: "35%" }}>
+      <div className="grid grid-cols-3 gap-4">
         <StatCard label="Specialization" items={toItems(roleCount)} />
         <StatCard label="Status" items={toItems(statusCount)} />
         <StatCard label="Uses AI?" items={aiItems} />
