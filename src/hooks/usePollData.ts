@@ -38,7 +38,8 @@ export function usePollData() {
   }, {} as Record<string, number>);
 
   const statusCount = responses.reduce((acc, r) => {
-    acc[r.status] = (acc[r.status] || 0) + 1;
+    const status = r.status === "Resident" ? "Polimi Resident Student" : r.status;
+    acc[status] = (acc[status] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
