@@ -1,0 +1,1 @@
+DELETE FROM public.poll_responses;
