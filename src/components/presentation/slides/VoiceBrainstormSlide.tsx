@@ -1,6 +1,7 @@
 import EditableText from "../EditableText";
 import GlassPanel from "../GlassPanel";
-import { Mic, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import wisprLogo from "@/assets/wispr-flow-logo.png";
 
 interface Props {
   content: Record<string, string>;
@@ -46,8 +47,8 @@ const VoiceBrainstormSlide = ({ content, onUpdate }: Props) => (
         </div>
       </GlassPanel>
       <GlassPanel className="p-8 flex flex-col items-center justify-center gap-5 w-56">
-        <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-          <Mic className="w-12 h-12 text-white" />
+        <div className="w-24 h-24 rounded-2xl bg-[#1a1a2e] flex items-center justify-center p-3">
+          <img src={wisprLogo} alt="Wispr Flow" className="w-full h-full object-contain" />
         </div>
         <EditableText
           as="p"
