@@ -20,25 +20,25 @@ const DirectorSlide = ({ content, onUpdate }: Props) => (
         as="h1"
         value={content.heading || "You are the Director"}
         onChange={(v) => onUpdate("heading", v)}
-        className="text-5xl font-extrabold text-foreground leading-tight"
+        className="text-6xl font-extrabold text-foreground leading-tight"
       />
       <EditableText
         as="p"
         value={content.sub || "AI is your Buddy"}
         onChange={(v) => onUpdate("sub", v)}
-        className="text-xl text-muted-foreground mt-1"
+        className="text-2xl text-muted-foreground mt-2 font-medium"
       />
     </div>
     <GlassPanel className="flex-1 p-10">
       <div className="space-y-5 h-full flex flex-col justify-center">
         {bullets.map(({ key, def }) => (
-          <div key={key} className="flex gap-4 items-start p-4 rounded-xl bg-background/40">
-            <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 mt-2.5 shrink-0" />
+          <div key={key} className="flex gap-4 items-start p-5 rounded-xl bg-background/40">
+            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 mt-3 shrink-0" />
             <EditableText
               as="p"
               value={content[key] || def}
               onChange={(v) => onUpdate(key, v)}
-              className="text-xl text-foreground/85 leading-relaxed"
+              className="text-2xl text-foreground/90 leading-relaxed font-medium"
             />
           </div>
         ))}
