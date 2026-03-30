@@ -8,11 +8,12 @@ interface Props {
 
 const TitleSlide = ({ content, onUpdate }: Props) => (
   <div className="w-full h-full flex flex-col px-4 relative overflow-hidden">
-    {/* Vibrant gradient orb — left-center */}
-    <div className="absolute top-1/2 left-[15%] -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gradient-to-br from-orange-400/60 via-pink-500/50 to-fuchsia-500/40 blur-[120px] pointer-events-none" />
-    <div className="absolute top-[30%] left-[5%] w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-violet-500/35 to-pink-400/25 blur-[100px] pointer-events-none" />
-    {/* Title — vertically centered */}
-    <div className="flex-1 flex flex-col justify-center max-w-5xl pb-20">
+    {/* Gradient orb — right-center-bottom, fading to cream top-left */}
+    <div className="absolute bottom-[-20%] right-[10%] w-[900px] h-[900px] rounded-full bg-gradient-to-tl from-fuchsia-500/55 via-pink-500/45 to-orange-400/30 blur-[150px] pointer-events-none" />
+    <div className="absolute bottom-[5%] right-[30%] w-[500px] h-[500px] rounded-full bg-gradient-to-tl from-violet-500/30 to-pink-400/20 blur-[120px] pointer-events-none" />
+
+    {/* Title — vertically centered, above gradient */}
+    <div className="flex-1 flex flex-col justify-center max-w-5xl pb-20 relative z-10">
       <EditableText
         as="p"
         value={content.label || "Presentation:"}
