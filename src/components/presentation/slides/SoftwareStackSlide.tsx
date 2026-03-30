@@ -3,7 +3,7 @@ import GlassPanel from "../GlassPanel";
 import logoGemini from "@/assets/logo-gemini.png";
 import logoChatGPT from "@/assets/logo-chatgpt.png";
 import logoMidjourney from "@/assets/logo-midjourney.png";
-import logoKling from "@/assets/logo-kling.png";
+import logoKling from "@/assets/logo-kling.png"; // v2
 
 
 interface Props {
