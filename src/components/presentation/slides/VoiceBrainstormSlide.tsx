@@ -47,7 +47,7 @@ const VoiceBrainstormSlide = ({ content, onUpdate }: Props) => (
         </div>
       </GlassPanel>
       <GlassPanel className="p-8 flex flex-col items-center justify-center gap-5 w-56">
-        <div className="w-24 h-24 rounded-2xl bg-[#1a1a2e] flex items-center justify-center p-3">
+        <div className="w-24 h-24 rounded-2xl overflow-hidden">
           <img src={wisprLogo} alt="Wispr Flow" className="w-full h-full object-contain" />
         </div>
         <EditableText
