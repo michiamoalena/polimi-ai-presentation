@@ -39,6 +39,7 @@ const tools = [
     name: "Midjourney",
     logo: logoMidjourney,
     accent: "border-orange-400/40 hover:border-orange-400",
+    linkGradient: "from-orange-500 to-pink-500",
     links: [
       { label: "Getting Started Guide", url: "https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide" },
       { label: "Prompt Basics", url: "https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics" },
