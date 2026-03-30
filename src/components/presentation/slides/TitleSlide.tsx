@@ -18,13 +18,10 @@ const TitleSlide = ({ content, onUpdate }: Props) => (
 
     {/* Title — vertically centered, above gradient */}
     <div className="flex-1 flex flex-col justify-center max-w-5xl pb-20 relative z-30">
-      <EditableText
-        as="h1"
-        value={content.title || "Meta & Techno Skills of working with Gen AI"}
-        onChange={(v) => onUpdate("title", v)}
-        className="text-7xl font-extrabold text-foreground mb-6 leading-[1.1]"
-        multiline
-      />
+      <h1 className="text-7xl font-extrabold text-foreground mb-6 leading-[1.1]">
+        <span className="block">Meta & Technical Skills</span>
+        <span className="block">of working with Gen AI</span>
+      </h1>
       <EditableText
         as="p"
         value={content.subtitle || "For Architects and Urbanists"}
