@@ -8,9 +8,9 @@ interface Props {
 }
 
 const bullets = [
-  { key: "regen", def: "Don't Regenerate — Edit: Fixing one window is better than starting over." },
-  { key: "tool", def: 'The Tool: Use the "Brush" in ChatGPT or Vary Region in Midjourney.' },
-  { key: "pov", def: "The POV Hack: Use Kling AI settings to adjust Zoom, Pan, and Tilt to get the perfect perspective for your 3D model." },
+  { key: "rule", def: "Rule: Fixing one window is better than starting over." },
+  { key: "tools", def: 'The Tools: Use "Brush" in ChatGPT Canvas or Vary Region in Midjourney.' },
+  { key: "camera", def: "Camera Hack: Use Kling AI settings to adjust FOV and Tilt for the perfect shot." },
 ];
 
 const EditingSlide = ({ content, onUpdate }: Props) => (
@@ -22,7 +22,7 @@ const EditingSlide = ({ content, onUpdate }: Props) => (
       <div>
         <EditableText
           as="h1"
-          value={content.heading || "Editing without Photoshop"}
+          value={content.heading || "Fix, Don't Regenerate"}
           onChange={(v) => onUpdate("heading", v)}
           className="text-6xl font-extrabold text-foreground leading-tight"
         />

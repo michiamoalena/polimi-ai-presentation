@@ -1,6 +1,6 @@
 import EditableText from "../EditableText";
 import GlassPanel from "../GlassPanel";
-import { Mic } from "lucide-react";
+import { Mic, ExternalLink } from "lucide-react";
 
 interface Props {
   content: Record<string, string>;
@@ -8,10 +8,9 @@ interface Props {
 }
 
 const bullets = [
-  { key: "talk", def: "Don't Type — Talk: Capture your ideas naturally without internal blocks." },
-  { key: "tool", def: "The Tool: Use Whispr Flow to turn your thoughts into clear architectural prompts." },
-  { key: "why", def: "Why? It cleans up your speech and formats it perfectly for Gemini or ChatGPT." },
-  { key: "buddy", def: "The Buddy Rule: Talk to Gemini/ChatGPT while sketching. Discuss materials out loud." },
+  { key: "talk", def: "Don't Type — Talk: Capture ideas naturally. Typing kills the creative flow." },
+  { key: "tool", def: "The Tool: Wispr Flow. Turns rambling thoughts into professional prompts." },
+  { key: "speed", def: "Efficiency: 10x faster than typing. Brainstorm while you sketch." },
 ];
 
 const VoiceBrainstormSlide = ({ content, onUpdate }: Props) => (
@@ -52,10 +51,19 @@ const VoiceBrainstormSlide = ({ content, onUpdate }: Props) => (
         </div>
         <EditableText
           as="p"
-          value={content.cta || "Try Whispr Flow"}
+          value={content.cta || "Try Wispr Flow"}
           onChange={(v) => onUpdate("cta", v)}
           className="text-xl font-bold text-foreground text-center"
         />
+        <a
+          href="https://wisprflow.ai/r?ALENA16"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+        >
+          <ExternalLink className="w-4 h-4" />
+          1 month Pro FREE
+        </a>
         <EditableText
           as="p"
           value={content.ctaSub || "(My Referral)"}

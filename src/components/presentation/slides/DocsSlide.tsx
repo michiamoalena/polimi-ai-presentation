@@ -1,5 +1,4 @@
 import EditableText from "../EditableText";
-import GlassPanel from "../GlassPanel";
 import { ExternalLink } from "lucide-react";
 
 interface Props {
@@ -8,10 +7,10 @@ interface Props {
 }
 
 const links = [
-  { key: "gemini", label: "Gemini: Official Image Editing Guide", color: "from-blue-500 to-cyan-400" },
-  { key: "chatgpt", label: "ChatGPT: DALL-E 3 & Canvas Tutorial", color: "from-green-500 to-emerald-400" },
-  { key: "midjourney", label: 'Midjourney: Web Editor & "Vary Region"', color: "from-orange-500 to-pink-500" },
-  { key: "kling", label: "Kling AI: Camera Control Settings Guide", color: "from-violet-500 to-fuchsia-500" },
+  { key: "gemini", label: "Gemini: Official Editing Guide", color: "from-blue-500 to-cyan-400", url: "#" },
+  { key: "chatgpt", label: "ChatGPT: DALL-E 3 & Canvas Tutorial", color: "from-green-500 to-emerald-400", url: "#" },
+  { key: "midjourney", label: "Midjourney: Web Editor Guide", color: "from-orange-500 to-pink-500", url: "#" },
+  { key: "kling", label: "Kling AI: Camera Control Guide", color: "from-violet-500 to-fuchsia-500", url: "#" },
 ];
 
 const DocsSlide = ({ content, onUpdate }: Props) => (
@@ -22,12 +21,6 @@ const DocsSlide = ({ content, onUpdate }: Props) => (
         value={content.heading || "Official Docs & Tutorials"}
         onChange={(v) => onUpdate("heading", v)}
         className="text-6xl font-extrabold text-foreground leading-tight"
-      />
-      <EditableText
-        as="p"
-        value={content.subtitle || "Click the buttons below for official guides:"}
-        onChange={(v) => onUpdate("subtitle", v)}
-        className="text-2xl text-muted-foreground mt-2 font-medium"
       />
     </div>
     <div className="flex-1 grid grid-cols-2 gap-6 min-h-0">
