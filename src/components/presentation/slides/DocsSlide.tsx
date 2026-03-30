@@ -74,22 +74,22 @@ const DocsSlide = ({ content, onUpdate }: Props) => (
       {tools.map((tool) => (
         <GlassPanel
           key={tool.key}
-          className={`p-5 flex flex-col gap-3 border-2 ${tool.accent} transition-colors`}
+          className={`p-6 flex flex-col justify-center gap-4 border-2 ${tool.accent} transition-colors`}
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <img src={tool.logo} alt={tool.name} className="w-16 h-16 object-contain shrink-0" />
-            <span className="text-xl font-bold text-foreground">{tool.name}</span>
+            <span className="text-3xl font-bold text-foreground">{tool.name}</span>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             {tool.links.map((link, i) => (
               <a
                 key={i}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-base text-foreground/80 hover:text-foreground font-medium transition-colors group"
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r ${tool.linkGradient} text-white font-semibold text-lg hover:opacity-90 transition-opacity`}
               >
-                <ExternalLink className="w-4 h-4 shrink-0 text-muted-foreground group-hover:text-foreground transition-colors" />
+                <ExternalLink className="w-5 h-5 shrink-0" />
                 <span className="truncate">{link.label}</span>
               </a>
             ))}
