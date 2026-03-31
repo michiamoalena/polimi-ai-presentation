@@ -14,6 +14,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      button_completions: {
+        Row: {
+          created_at: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+        }
+        Relationships: []
+      }
       poll_responses: {
         Row: {
           ai_no_reason: string | null

@@ -15,8 +15,9 @@ import EditingSlide from "@/components/presentation/slides/EditingSlide";
 import DocsSlide from "@/components/presentation/slides/DocsSlide";
 import TeaserSlide from "@/components/presentation/slides/TeaserSlide";
 import CoachPromptSlide from "@/components/presentation/slides/CoachPromptSlide";
+import FinallyButtonSlide from "@/components/presentation/slides/FinallyButtonSlide";
 
-const TOTAL_SLIDES = 12;
+const TOTAL_SLIDES = 13;
 
 const Index = () => {
   const { currentSlide, next, prev, totalSlides } = useSlideNavigation(TOTAL_SLIDES);
@@ -52,6 +53,7 @@ const Index = () => {
     <DocsSlide key={9} content={c(9)} onUpdate={updateContent(9)} />,
     <TeaserSlide key={10} content={c(10)} onUpdate={updateContent(10)} />,
     <CoachPromptSlide key={11} content={c(11)} onUpdate={updateContent(11)} />,
+    <FinallyButtonSlide key={12} content={c(12)} onUpdate={updateContent(12)} />,
   ];
 
   return (
