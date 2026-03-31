@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
-import GlassPanel from "../GlassPanel";
+
 
 const HOLD_DURATION = 2500;
 const RADIUS = 180;
