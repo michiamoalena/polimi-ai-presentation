@@ -4,9 +4,10 @@ import confetti from "canvas-confetti";
 import GlassPanel from "../GlassPanel";
 
 const HOLD_DURATION = 2500;
-const RADIUS = 150;
+const RADIUS = 180;
 const STROKE = 10;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+const TEXT_RADIUS = RADIUS - 45; // radius for curved text path
 
 interface Props {
   content: Record<string, string>;
