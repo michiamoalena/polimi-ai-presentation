@@ -53,6 +53,7 @@ const Index = () => {
     <DocsSlide key={9} content={c(9)} onUpdate={updateContent(9)} />,
     <TeaserSlide key={10} content={c(10)} onUpdate={updateContent(10)} />,
     <CoachPromptSlide key={11} content={c(11)} onUpdate={updateContent(11)} />,
+    <FinallyButtonSlide key={12} content={c(12)} onUpdate={updateContent(12)} />,
   ];
 
   return (
