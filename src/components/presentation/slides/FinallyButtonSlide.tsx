@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
 import GlassPanel from "../GlassPanel";
@@ -16,26 +16,9 @@ interface Props {
 const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
   const [progress, setProgress] = useState(0);
   const [activated, setActivated] = useState(false);
-  const [completionCount, setCompletionCount] = useState<number | null>(null);
   const animRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const progressRef = useRef(0);
-
-  // Fetch count on mount
-  useEffect(() => {
-    supabase.from("button_completions").select("id", { count: "exact", head: true }).then(({ count }) => {
-      setCompletionCount(count ?? 0);
-    });
-
-    const channel = supabase
-      .channel("button_completions_rt")
-      .on("postgres_changes", { event: "INSERT", schema: "public", table: "button_completions" }, () => {
-        setCompletionCount((prev) => (prev ?? 0) + 1);
-      })
-      .subscribe();
-
-    return () => { supabase.removeChannel(channel); };
-  }, []);
 
   const fireConfetti = useCallback(() => {
     const duration = 3000;
