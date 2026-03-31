@@ -3,9 +3,9 @@ import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
 import GlassPanel from "../GlassPanel";
 
-const HOLD_DURATION = 2500; // ms to fill
-const RADIUS = 90;
-const STROKE = 8;
+const HOLD_DURATION = 2500;
+const RADIUS = 150;
+const STROKE = 10;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 interface Props {
