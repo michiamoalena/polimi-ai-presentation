@@ -102,36 +102,60 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
     );
   }
 
+  const svgSize = (RADIUS + STROKE) * 2;
+  const center = RADIUS + STROKE;
+
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative gap-8">
-      {/* The button with SVG ring */}
+    <div className="w-full h-full flex flex-col items-center justify-center relative">
       <div
-        className="relative select-none cursor-pointer"
+        className={`relative select-none cursor-pointer transition-transform duration-150 ${progress > 0 ? "scale-95" : "hover:scale-105"}`}
         onMouseDown={startHold}
         onMouseUp={stopHold}
         onMouseLeave={stopHold}
         onTouchStart={startHold}
         onTouchEnd={stopHold}
       >
-        {/* SVG progress ring */}
-        <svg
-          width={(RADIUS + STROKE) * 2}
-          height={(RADIUS + STROKE) * 2}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90"
-        >
-          {/* Track */}
+        <svg width={svgSize} height={svgSize} className="block">
+          <defs>
+            {/* Top arc path for "The theory is over." */}
+            <path
+              id="topArc"
+              d={`M ${center - TEXT_RADIUS},${center} A ${TEXT_RADIUS},${TEXT_RADIUS} 0 0,1 ${center + TEXT_RADIUS},${center}`}
+              fill="none"
+            />
+            {/* Bottom arc path for "Hold the button to continue." */}
+            <path
+              id="bottomArc"
+              d={`M ${center + TEXT_RADIUS},${center} A ${TEXT_RADIUS},${TEXT_RADIUS} 0 0,1 ${center - TEXT_RADIUS},${center}`}
+              fill="none"
+            />
+          </defs>
+
+          {/* Glass circle background */}
           <circle
-            cx={RADIUS + STROKE}
-            cy={RADIUS + STROKE}
+            cx={center}
+            cy={center}
+            r={RADIUS - 2}
+            fill="hsla(var(--glass-bg))"
+            stroke="hsla(var(--glass-border))"
+            strokeWidth="1"
+            style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.12))" }}
+          />
+
+          {/* Progress track */}
+          <circle
+            cx={center}
+            cy={center}
             r={RADIUS}
             fill="none"
             stroke="hsl(var(--muted))"
             strokeWidth={STROKE}
+            transform={`rotate(-90 ${center} ${center})`}
           />
-          {/* Progress */}
+          {/* Progress fill */}
           <circle
-            cx={RADIUS + STROKE}
-            cy={RADIUS + STROKE}
+            cx={center}
+            cy={center}
             r={RADIUS}
             fill="none"
             stroke="hsl(210 100% 55%)"
@@ -139,29 +163,33 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
             strokeDasharray={CIRCUMFERENCE}
             strokeDashoffset={dashOffset}
             strokeLinecap="round"
+            transform={`rotate(-90 ${center} ${center})`}
             style={{ transition: progress === 0 ? "none" : "stroke-dashoffset 50ms linear" }}
           />
-        </svg>
 
-        <div
-          className={`
-            relative z-10 glass-panel rounded-full text-center
-            flex flex-col items-center justify-center
-            transition-transform duration-150
-            ${progress > 0 ? "scale-95" : "hover:scale-105"}
-          `}
-          style={{ width: RADIUS * 2 + "px", height: RADIUS * 2 + "px" }}
-        >
-          <p className="text-4xl font-extrabold text-foreground leading-tight">
-            The theory is over.
-          </p>
-          <p className="text-4xl font-extrabold text-foreground mt-1">
-            Finally.
-          </p>
-          <p className="text-lg text-muted-foreground mt-4">
-            Hold the button to continue.
-          </p>
-        </div>
+          {/* Top curved text */}
+          <text
+            fill="hsl(var(--foreground))"
+            fontSize="28"
+            fontWeight="800"
+            letterSpacing="1"
+          >
+            <textPath href="#topArc" startOffset="50%" textAnchor="middle">
+              The theory is over.
+            </textPath>
+          </text>
+
+          {/* Bottom curved text */}
+          <text
+            fill="hsl(var(--muted-foreground))"
+            fontSize="20"
+            fontWeight="500"
+          >
+            <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
+              Hold the button to continue.
+            </textPath>
+          </text>
+        </svg>
       </div>
     </div>
   );
