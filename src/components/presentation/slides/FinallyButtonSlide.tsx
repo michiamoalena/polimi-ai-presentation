@@ -87,7 +87,7 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
   if (activated) {
     return (
       <div className="w-full h-full flex items-center justify-center relative">
-        <GlassPanel className="max-w-3xl text-center p-16 animate-scale-in">
+        <div className="glass-panel rounded-2xl max-w-3xl text-center p-16 animate-scale-in">
           <h2 className="text-5xl font-bold text-foreground mb-8 leading-tight">
             What are you thinking?
           </h2>
@@ -97,7 +97,7 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
           <p className="text-2xl text-muted-foreground leading-relaxed">
             Do you have specific cases? Let's analyze them together.
           </p>
-        </GlassPanel>
+        </div>
       </div>
     );
   }
