@@ -142,22 +142,26 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
           />
         </svg>
 
-        <GlassPanel
+        <div
           className={`
-            relative z-10 px-16 py-10 rounded-full text-center
+            relative z-10 glass-panel rounded-full text-center
+            flex flex-col items-center justify-center
             transition-transform duration-150
             ${progress > 0 ? "scale-95" : "hover:scale-105"}
           `}
+          style={{ width: RADIUS * 2 + "px", height: RADIUS * 2 + "px" }}
         >
-          <p className="text-3xl font-bold text-foreground whitespace-nowrap">
-            THE THEORY IS OVER. FINALLY!
+          <p className="text-4xl font-extrabold text-foreground leading-tight">
+            The theory is over.
           </p>
-        </GlassPanel>
+          <p className="text-4xl font-extrabold text-foreground mt-1">
+            Finally.
+          </p>
+          <p className="text-lg text-muted-foreground mt-4">
+            Hold the button to continue.
+          </p>
+        </div>
       </div>
-
-      <p className="text-xl text-muted-foreground/50 animate-pulse">
-        Hold the button to continue...
-      </p>
     </div>
   );
 };
