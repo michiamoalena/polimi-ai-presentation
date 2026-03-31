@@ -96,11 +96,6 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
           <p className="text-2xl text-muted-foreground leading-relaxed">
             Do you have specific cases? Let's analyze them together.
           </p>
-          {completionCount !== null && (
-            <p className="mt-10 text-lg text-muted-foreground/60">
-              🎉 Activated <span className="font-bold text-foreground">{completionCount}</span> times total
-            </p>
-          )}
         </GlassPanel>
       </div>
     );
