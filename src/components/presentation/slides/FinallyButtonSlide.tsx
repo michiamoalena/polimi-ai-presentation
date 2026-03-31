@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
 import GlassPanel from "../GlassPanel";
@@ -16,26 +16,9 @@ interface Props {
 const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
   const [progress, setProgress] = useState(0);
   const [activated, setActivated] = useState(false);
-  const [completionCount, setCompletionCount] = useState<number | null>(null);
   const animRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const progressRef = useRef(0);
-
-  // Fetch count on mount
-  useEffect(() => {
-    supabase.from("button_completions").select("id", { count: "exact", head: true }).then(({ count }) => {
-      setCompletionCount(count ?? 0);
-    });
-
-    const channel = supabase
-      .channel("button_completions_rt")
-      .on("postgres_changes", { event: "INSERT", schema: "public", table: "button_completions" }, () => {
-        setCompletionCount((prev) => (prev ?? 0) + 1);
-      })
-      .subscribe();
-
-    return () => { supabase.removeChannel(channel); };
-  }, []);
 
   const fireConfetti = useCallback(() => {
     const duration = 3000;
@@ -113,11 +96,6 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
           <p className="text-2xl text-muted-foreground leading-relaxed">
             Do you have specific cases? Let's analyze them together.
           </p>
-          {completionCount !== null && (
-            <p className="mt-10 text-lg text-muted-foreground/60">
-              🎉 Activated <span className="font-bold text-foreground">{completionCount}</span> times total
-            </p>
-          )}
         </GlassPanel>
       </div>
     );
@@ -168,7 +146,7 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
           className={`
             relative z-10 px-16 py-10 rounded-full text-center
             transition-transform duration-150
-            ${progress > 0 ? "scale-95" : "hover:scale-105"}
+            ${progress > 0 ? "scale-95" : "hover:scale-105 animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"}
           `}
         >
           <p className="text-3xl font-bold text-foreground whitespace-nowrap">
@@ -180,12 +158,6 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
       <p className="text-xl text-muted-foreground/50 animate-pulse">
         Hold the button to continue...
       </p>
-
-      {completionCount !== null && completionCount > 0 && (
-        <p className="text-base text-muted-foreground/40">
-          Completed {completionCount} times
-        </p>
-      )}
     </div>
   );
 };
