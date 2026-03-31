@@ -146,7 +146,7 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
           className={`
             relative z-10 px-16 py-10 rounded-full text-center
             transition-transform duration-150
-            ${progress > 0 ? "scale-95" : "hover:scale-105"}
+            ${progress > 0 ? "scale-95" : "hover:scale-105 animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"}
           `}
         >
           <p className="text-3xl font-bold text-foreground whitespace-nowrap">
@@ -158,12 +158,6 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
       <p className="text-xl text-muted-foreground/50 animate-pulse">
         Hold the button to continue...
       </p>
-
-      {completionCount !== null && completionCount > 0 && (
-        <p className="text-base text-muted-foreground/40">
-          Completed {completionCount} times
-        </p>
-      )}
     </div>
   );
 };
