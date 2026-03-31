@@ -103,11 +103,17 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
     );
   }
 
-  const svgSize = (RADIUS + STROKE) * 2;
-  const center = RADIUS + STROKE;
+  const svgSize = (RING_RADIUS + STROKE) * 2;
+  const svgCenter = RING_RADIUS + STROKE;
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative">
+    <div className="w-full h-full flex flex-col items-center justify-center relative gap-10">
+      {/* Title above the button */}
+      <h2 className="text-5xl font-extrabold text-foreground tracking-tight">
+        The theory is over.
+      </h2>
+
+      {/* Button with progress ring */}
       <div
         className={`relative select-none cursor-pointer transition-transform duration-150 ${progress > 0 ? "scale-95" : "hover:scale-105"}`}
         onMouseDown={startHold}
@@ -116,81 +122,52 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
         onTouchStart={startHold}
         onTouchEnd={stopHold}
       >
-        <svg width={svgSize} height={svgSize} className="block">
-          <defs>
-            {/* Top arc path for "The theory is over." */}
-            <path
-              id="topArc"
-              d={`M ${center - TEXT_RADIUS},${center} A ${TEXT_RADIUS},${TEXT_RADIUS} 0 0,1 ${center + TEXT_RADIUS},${center}`}
-              fill="none"
-            />
-            {/* Bottom arc path for "Hold the button to continue." */}
-            <path
-              id="bottomArc"
-              d={`M ${center + TEXT_RADIUS},${center} A ${TEXT_RADIUS},${TEXT_RADIUS} 0 0,1 ${center - TEXT_RADIUS},${center}`}
-              fill="none"
-            />
-          </defs>
-
-          {/* Glass circle background */}
+        {/* SVG ring overlay */}
+        <svg
+          width={svgSize}
+          height={svgSize}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+        >
+          {/* Track */}
           <circle
-            cx={center}
-            cy={center}
-            r={RADIUS - 2}
-            fill="hsla(var(--glass-bg))"
-            stroke="hsla(var(--glass-border))"
-            strokeWidth="1"
-            style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.12))" }}
-          />
-
-          {/* Progress track */}
-          <circle
-            cx={center}
-            cy={center}
-            r={RADIUS}
+            cx={svgCenter}
+            cy={svgCenter}
+            r={RING_RADIUS}
             fill="none"
             stroke="hsl(var(--muted))"
             strokeWidth={STROKE}
-            transform={`rotate(-90 ${center} ${center})`}
+            transform={`rotate(-90 ${svgCenter} ${svgCenter})`}
           />
-          {/* Progress fill */}
+          {/* Progress */}
           <circle
-            cx={center}
-            cy={center}
-            r={RADIUS}
+            cx={svgCenter}
+            cy={svgCenter}
+            r={RING_RADIUS}
             fill="none"
             stroke="hsl(210 100% 55%)"
             strokeWidth={STROKE}
             strokeDasharray={CIRCUMFERENCE}
             strokeDashoffset={dashOffset}
             strokeLinecap="round"
-            transform={`rotate(-90 ${center} ${center})`}
+            transform={`rotate(-90 ${svgCenter} ${svgCenter})`}
             style={{ transition: progress === 0 ? "none" : "stroke-dashoffset 50ms linear" }}
           />
-
-          {/* Top curved text */}
-          <text
-            fill="hsl(var(--foreground))"
-            fontSize="28"
-            fontWeight="800"
-            letterSpacing="1"
-          >
-            <textPath href="#topArc" startOffset="50%" textAnchor="middle">
-              The theory is over.
-            </textPath>
-          </text>
-
-          {/* Bottom curved text */}
-          <text
-            fill="hsl(var(--muted-foreground))"
-            fontSize="20"
-            fontWeight="500"
-          >
-            <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
-              Hold the button to continue.
-            </textPath>
-          </text>
         </svg>
+
+        {/* The actual circle button */}
+        <div
+          className="rounded-full flex items-center justify-center"
+          style={{
+            width: BUTTON_SIZE,
+            height: BUTTON_SIZE,
+            background: "hsl(var(--background))",
+            boxShadow: "0 20px 60px -10px rgba(0,0,0,0.18), 0 8px 24px -6px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.6)",
+          }}
+        >
+          <p className="text-xl font-medium text-muted-foreground text-center px-8 leading-relaxed">
+            Hold the button<br />to continue.
+          </p>
+        </div>
       </div>
     </div>
   );
