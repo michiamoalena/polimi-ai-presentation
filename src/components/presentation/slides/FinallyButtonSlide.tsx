@@ -146,7 +146,7 @@ const FinallyButtonSlide = ({ content, onUpdate }: Props) => {
           className={`
             relative z-10 px-16 py-10 rounded-full text-center
             transition-transform duration-150
-            ${progress > 0 ? "scale-95" : "hover:scale-105 animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"}
+            ${progress > 0 ? "scale-95" : "hover:scale-105"}
           `}
         >
           <p className="text-3xl font-bold text-foreground whitespace-nowrap">
