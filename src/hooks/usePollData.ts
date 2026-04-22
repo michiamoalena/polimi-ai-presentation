@@ -108,5 +108,5 @@ export function usePollData() {
     return acc;
   }, {} as Record<string, number>);
 
-  return { responses, roleCount, statusCount, aiCount, toolCount, noReasonCount, total: responses.length };
+  return { responses, roleCount, statusCount, aiCount, toolCount, noReasonCount, total: realResponses.length };
 }
