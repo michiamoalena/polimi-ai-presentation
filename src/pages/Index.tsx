@@ -14,16 +14,18 @@ import PromptingSlide from "@/components/presentation/slides/PromptingSlide";
 import EditingSlide from "@/components/presentation/slides/EditingSlide";
 import DocsSlide from "@/components/presentation/slides/DocsSlide";
 import TeaserSlide from "@/components/presentation/slides/TeaserSlide";
+import MotionSlide from "@/components/presentation/slides/MotionSlide";
+import TwoDToThreeDSlide from "@/components/presentation/slides/TwoDToThreeDSlide";
+import SoundSlide from "@/components/presentation/slides/SoundSlide";
 import CoachPromptSlide from "@/components/presentation/slides/CoachPromptSlide";
 import FinallyButtonSlide from "@/components/presentation/slides/FinallyButtonSlide";
 
-const TOTAL_SLIDES = 13;
+const TOTAL_SLIDES = 16;
 
 const Index = () => {
   const { currentSlide, next, prev, totalSlides } = useSlideNavigation(TOTAL_SLIDES);
   const pollData = usePollData();
 
-  // Editable content state per slide
   const [slideContent, setSlideContent] = useState<Record<number, Record<string, string>>>({});
 
   const updateContent = (slideIndex: number) => (key: string, value: string) => {
@@ -52,8 +54,11 @@ const Index = () => {
     <EditingSlide key={8} content={c(8)} onUpdate={updateContent(8)} />,
     <DocsSlide key={9} content={c(9)} onUpdate={updateContent(9)} />,
     <TeaserSlide key={10} content={c(10)} onUpdate={updateContent(10)} />,
-    <CoachPromptSlide key={11} content={c(11)} onUpdate={updateContent(11)} />,
-    <FinallyButtonSlide key={12} content={c(12)} onUpdate={updateContent(12)} />,
+    <MotionSlide key={11} content={c(11)} onUpdate={updateContent(11)} />,
+    <TwoDToThreeDSlide key={12} content={c(12)} onUpdate={updateContent(12)} />,
+    <SoundSlide key={13} content={c(13)} onUpdate={updateContent(13)} />,
+    <CoachPromptSlide key={14} content={c(14)} onUpdate={updateContent(14)} />,
+    <FinallyButtonSlide key={15} content={c(15)} onUpdate={updateContent(15)} />,
   ];
 
   return (
