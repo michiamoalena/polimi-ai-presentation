@@ -25,9 +25,6 @@ const PromptingSlide = ({ content, onUpdate }: Props) => (
       />
     </div>
 
-    {/* TODO: сгенерить Bad vs Good comparison images */}
-    <p className="text-amber-500 text-sm font-semibold mb-4">📌 Пометка: сгенерить картинки "Bad" vs "Good" (AI soup vs Clean 2-point perspective)</p>
-
     <div className="flex-1 grid grid-cols-[1fr_auto] gap-6 min-h-0">
       <GlassPanel className="p-8 flex flex-col justify-center">
         <div className="space-y-5">
