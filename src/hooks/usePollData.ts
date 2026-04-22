@@ -49,12 +49,17 @@ const DEMO_RESPONSES: PollResponse[] = (() => {
 })();
 
 export function usePollData() {
-  const [responses, setResponses] = useState<PollResponse[]>(DEMO_RESPONSES);
+  // Real responses from DB (used for live counter)
+  const [realResponses, setRealResponses] = useState<PollResponse[]>([]);
 
   useEffect(() => {
-    supabase.from("poll_responses").select("*").then(({ data }) => {
-      if (data) setResponses(data);
-    });
+    supabase
+      .from("poll_responses")
+      .select("*")
+      .order("created_at", { ascending: true })
+      .then(({ data }) => {
+        if (data) setRealResponses(data as PollResponse[]);
+      });
 
     const channel = supabase
       .channel("poll_realtime")
@@ -62,13 +67,17 @@ export function usePollData() {
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "poll_responses" },
         (payload) => {
-          setResponses((prev) => [...prev, payload.new as PollResponse]);
+          setRealResponses((prev) => [...prev, payload.new as PollResponse]);
         }
       )
       .subscribe();
 
     return () => { supabase.removeChannel(channel); };
   }, []);
+
+  // Charts blend demo seed + real responses so visualization looks full;
+  // the live counter uses only real responses.
+  const responses = [...DEMO_RESPONSES, ...realResponses];
 
   const roleCount = responses.reduce((acc, r) => {
     acc[r.role] = (acc[r.role] || 0) + 1;
