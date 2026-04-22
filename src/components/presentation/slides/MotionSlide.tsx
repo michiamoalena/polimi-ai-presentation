@@ -61,10 +61,6 @@ const MotionSlide = ({ content, onUpdate }: Props) => (
       />
     </div>
 
-    <p className="text-amber-500 text-sm font-semibold mb-3">
-      📌 Пометка: вставить короткий GIF fly-through как визуальный фон
-    </p>
-
     <div className="flex-1 grid grid-cols-2 gap-5 min-h-0">
       <GlassPanel className="p-7 flex flex-col gap-4">
         <div className="flex flex-col gap-3">
