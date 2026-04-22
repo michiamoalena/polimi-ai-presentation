@@ -49,9 +49,6 @@ const CoachPromptSlide = ({ content, onUpdate }: Props) => {
           onChange={(v) => onUpdate("subtitle", v)}
           className="text-2xl text-muted-foreground mt-2 font-medium"
         />
-        <p className="text-amber-500 text-sm font-semibold mt-2">
-          📌 Пометка: переписать промт согласно программе курса которую проф пришлёт
-        </p>
       </div>
 
       <div className="flex-1 grid grid-cols-[1.3fr_1fr] gap-5 min-h-0">
